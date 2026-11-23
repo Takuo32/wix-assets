@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!-- COMNEXT2026 Wix埋め込み用。
+<!-- COMNEXT2026 Wix埋め込み用（HTML iframe / 埋め込みコード）
   画像・PDFは assets フォルダを公開サーバーに置き、
   「https://forum.b2every1.org/」をその公開URLに一括置換してください。 -->
-<html lang="ja" class="bg-alt bg-light bg-deep">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>情報通信配線技術フォーラム 2026冬｜COMNEXT</title>
+<title>ICT Network Infrastructure Forum 2026｜COMNEXT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,700;1,800;1,900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
-<style>
+<style>/* comnext.css */
 /* COMNEXT 2026 — Information & Communication Wiring Forum
    Dark instrument / optical-fiber system, derived from Fiber Fusion Sprint hero */
 :root{
@@ -197,10 +197,6 @@ img{display:block;max-width:100%}
 .sk:hover .bar{transform:scaleX(1)}
 
 /* ---------- program ---------- */
-.prog{padding-top:0}
-.prog .herowrap{border-bottom:1px solid var(--line2);background:#060a12}
-.prog .herowrap .ffs-hero{max-width:1120px;margin:0 auto}
-.prog .sec-inner{padding-top:clamp(64px,8vw,110px)}
 .daytabs{display:flex;gap:0;border:1px solid var(--line2);width:max-content;margin-bottom:28px}
 .daytabs button{all:unset;cursor:pointer;padding:14px 26px;border-left:1px solid var(--line2);display:flex;align-items:baseline;gap:10px;color:var(--sub);transition:background .2s,color .2s}
 .daytabs button:first-child{border-left:0}
@@ -290,8 +286,13 @@ img{display:block;max-width:100%}
 .board .s{font-size:13px;color:var(--light);letter-spacing:.14em}
 
 /* ---------- ISO ---------- */
-.iso{display:grid;grid-template-columns:200px 1fr 1fr;gap:40px;align-items:start}
-.iso .code{font:italic 900 clamp(48px,5vw,80px)/.9 var(--cond);color:#fff}
+.iso{display:grid;grid-template-columns:auto 1.2fr 1fr;gap:clamp(32px,4vw,56px);align-items:start}
+.iso .code{font:italic 900 clamp(44px,4.4vw,72px)/.92 var(--cond);color:#fff}
+.iso .code span{display:block;white-space:nowrap}
+.iso-name{margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line2)}
+.iso-name dt{font:600 13px var(--mono);letter-spacing:.1em;color:var(--light)}
+.iso-name dd{margin:8px 0 0;font:500 14px/1.6 var(--jp);color:var(--sub)}
+.iso-name dd b{color:#fff;font-weight:700}
 .iso .code small{display:block;font:600 12px var(--mono);font-style:normal;letter-spacing:.24em;color:var(--light);margin-bottom:14px}
 .iso h2{margin:0;font-weight:900;font-size:clamp(26px,2.6vw,40px);line-height:1.35;color:#fff;letter-spacing:-.03em;text-wrap:balance}
 .iso p{margin:0;color:var(--sub)}
@@ -357,7 +358,7 @@ img{display:block;max-width:100%}
 .ffs-lock .txt{font-family:var(--cond);font-style:italic;text-transform:uppercase;line-height:.88}
 .ffs-lock .txt b{display:block;font-weight:900;font-size:13cqw}
 .ffs-lock .txt span{display:block;font-weight:700;font-size:7.2cqw}
-.ffs-lock .txt em{display:block;font:700 3.9cqw/1 var(--jp);font-style:normal;letter-spacing:.06em;margin-top:2.6cqw;text-transform:none;color:#cfd6e3}
+.ffs-lock .txt em{display:block;white-space:nowrap;font:700 3.5cqw/1 var(--jp);font-style:normal;letter-spacing:.06em;margin-top:2.6cqw;text-transform:none;color:#cfd6e3}
 .ftr .meta{font:500 12px/2 var(--mono);color:var(--mute);text-align:right;letter-spacing:.06em}
 .ftr .meta b{color:var(--text);font-family:var(--jp)}
 .ftr .bot{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font:500 11px var(--mono);letter-spacing:.14em;color:var(--mute)}
@@ -386,7 +387,7 @@ img{display:block;max-width:100%}
 }
 
 </style>
-<style>
+<style>/* ffs-hero.css */
 /* Fiber Fusion Sprint — 01 Web Hero (from supplied component) */
 .ffs-hero *{box-sizing:border-box;margin:0;padding:0}
 .ffs-hero{--ink:#060a12;--light:oklch(0.86 0.15 200);--arc:oklch(0.86 0.15 75);--mute:#7f8aa0;font-family:"Noto Sans JP",sans-serif}
@@ -466,7 +467,7 @@ img{display:block;max-width:100%}
   @media (prefers-reduced-motion:reduce){.ffs-hero.play *{animation:none!important}}
 
 </style>
-<style>
+<style>/* bg-variants.css */
 /* ===== 背景バリエーション（Tweaks で切替） =====
    html に付くクラス:
    .bg-alt    … セクション交互（--ink / --ink2）
@@ -516,6 +517,8 @@ img{display:block;max-width:100%}
 .bg-light #visit .lg:hover{box-shadow:0 8px 24px rgba(6,10,18,.10)}
 .bg-light #visit .lg::after{background:var(--vis-acc)}
 .bg-light .ftr{border-top:0}
+.bg-light #visit .ptr-list li{color:#2a3344;border-left-color:var(--vis-line2)}
+.bg-light #visit .partners .role .pend{color:#8a5a00;border-color:#d9a640;background:#fff7e6}
 
 /* ---------- 3. FIBER SPRINT を深い青に ---------- */
 .bg-deep .lab{
@@ -554,7 +557,7 @@ img{display:block;max-width:100%}
 .bgtw .all button:hover{border-color:oklch(0.86 0.15 200);color:#fff}
 
 </style>
-<style>
+<style>/* kv-hero.css */
 /* ===== TOP：告知ビジュアル固定 + 控えめなモーション ===== */
 .vh-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -637,7 +640,7 @@ img{display:block;max-width:100%}
 }
 
 </style>
-<style>
+<style>/* skills.css */
 /* ===== 01 SKILLS : 見出しスワップ + 新カード + 職種紹介モーダル ===== */
 
 /* 見出し：5パターンを同じセルに重ね、高さを固定してガタつきを防ぐ */
@@ -767,6 +770,70 @@ body.skm-lock{overflow:hidden}
 }
 
 </style>
+<style>/* program.css */
+/* ===== 02 PROGRAM : 看板パネル型マトリクス ===== */
+.prog{--c-ict:oklch(0.72 0.14 235);--c-sec:oklch(0.68 0.16 300);--c-ren:oklch(0.74 0.15 150);--c-uas:oklch(0.76 0.15 60);--c-ffs:oklch(0.68 0.19 20)}
+.pm-head{display:flex;align-items:center;gap:16px;margin:8px 0 18px}
+.pm-free{font-weight:900;font-size:15px;color:var(--ink);background:#fff;padding:6px 14px;letter-spacing:.1em}
+.pm-range{font:italic 800 24px/1 var(--cond);letter-spacing:.04em;color:var(--sub)}
+.pm-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pm-grid{display:grid;grid-template-columns:minmax(360px,1.45fr) repeat(6,minmax(118px,1fr));gap:3px;min-width:1100px}
+
+.pm-corner{grid-row:1/span 2;display:flex;align-items:flex-end;padding:0 4px 10px;font-size:12px;font-weight:700;color:var(--mute);letter-spacing:.06em}
+.pm-day{grid-row:1;display:flex;align-items:baseline;justify-content:center;gap:8px;padding:12px 0;background:var(--panel);border-top:2px solid var(--line2)}
+.pm-day b{font-weight:900;font-size:19px;color:#fff;letter-spacing:.02em}
+.pm-day span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;color:var(--ink);font-weight:900;font-size:12px}
+.pm-day small{font:600 10px var(--mono);letter-spacing:.18em;color:var(--ink);background:var(--light);padding:2px 6px;margin-left:4px}
+.pm-day.today{border-top-color:var(--light);background:color-mix(in oklch,var(--light) 14%,var(--panel))}
+.pm-ap{grid-row:2;text-align:center;padding:6px 0;font:600 12px var(--mono);letter-spacing:.24em;color:var(--sub);background:var(--ink2)}
+
+.pm-who{grid-column:1;display:grid;grid-template-columns:132px 1fr;background:var(--panel);border-left:4px solid var(--c);min-height:150px}
+.pm-ph{position:relative;overflow:hidden}
+.pm-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pm-badge{position:absolute;left:6px;top:6px;background:var(--c-ffs);color:#fff;font-weight:900;font-size:11px;padding:3px 8px;letter-spacing:.06em}
+.pm-tx{padding:14px 16px 12px;display:flex;flex-direction:column;min-width:0}
+.pm-en{font:italic 800 13px/1.1 var(--cond);letter-spacing:.04em;text-transform:uppercase;color:var(--c)}
+.pm-tx b{font-weight:900;font-size:17px;line-height:1.3;color:#fff;margin-top:4px}
+.pm-tx p{margin:6px 0 8px;font-size:12px;line-height:1.65;color:var(--sub);flex:1;text-wrap:pretty}
+.pm-tx small{font-size:12px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.pm-tx small i{font-style:normal;font-size:10px;color:var(--mute);border:1px solid var(--line2);padding:1px 5px}
+
+.pm-cell{background:var(--ink2);border-top:3px solid var(--c);display:flex;flex-direction:column;justify-content:center;gap:10px;padding:12px 10px}
+.pm-cell.two .pm-slot+.pm-slot{padding-top:10px;border-top:1px dashed var(--line2)}
+.pm-cell.today{background:color-mix(in oklch,var(--light) 6%,var(--ink2))}
+.pm-slot{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.pm-slot>b{font:700 21px/1 var(--cond);letter-spacing:.02em;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pm-slot>b i{font-style:normal;color:var(--c);margin:0 1px}
+.pm-what{display:flex;align-items:center;gap:6px;color:var(--c)}
+.pm-what svg{flex:none;width:30px;height:20px}
+.pm-what em{font-style:normal;font-size:11.5px;font-weight:700;line-height:1.35;color:var(--text);text-align:left}
+.pm-tag{font-weight:900;font-size:11px;color:#fff;background:var(--c);padding:2px 10px;border-radius:99px;letter-spacing:.06em}
+
+.c-ict{--c:var(--c-ict)}.c-sec{--c:var(--c-sec)}.c-ren{--c:var(--c-ren)}.c-uas{--c:var(--c-uas)}.c-ffs{--c:var(--c-ffs)}
+.pm-who.c-ffs .pm-en{font-size:15px}
+
+/* 実演内容の図解 */
+.pm-legend{display:grid;grid-template-columns:200px repeat(4,1fr);gap:3px;margin-top:3px;min-width:1100px}
+.pm-lh{background:var(--c-ict);color:#fff;padding:16px 18px;display:flex;flex-direction:column;justify-content:center}
+.pm-lh small{font:600 10px/1.4 var(--mono);letter-spacing:.14em;opacity:.85}
+.pm-lh b{font-weight:900;font-size:16px;line-height:1.35;margin-top:6px}
+.pm-li{background:var(--panel);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.pm-ic{flex:none;width:68px;height:50px;display:grid;place-items:center;background:color-mix(in oklch,var(--c-ict) 14%,var(--ink2));color:var(--c-ict)}
+.pm-ic svg{width:52px;height:34px}
+.pm-li b{display:block;font-weight:900;font-size:14px;color:var(--c-ict)}
+.pm-li p{margin:4px 0 0;font-size:12px;line-height:1.6;color:var(--sub)}
+.prog .pnote{margin-top:14px}
+
+@media(max-width:900px){
+  .pm-scroll{margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}
+}
+
+/* ===== FIBER SPRINT 統合ヒーロー ===== */
+.lab{padding-top:0}
+.lab-hero{position:relative;z-index:1;border-bottom:1px solid var(--line2);margin-bottom:clamp(56px,7vw,96px);background:#060a12}
+.lab-hero .ffs-hero{max-width:1120px;margin:0 auto}
+
+</style>
 </head>
 <body>
 
@@ -777,7 +844,7 @@ body.skm-lock{overflow:hidden}
       <span class="hmark"><i class="b l"></i><i class="b r"></i><i class="ring"></i><i class="ring2"></i><i class="core"></i></span>
       <span class="wm"><span>Fiber Fusion</span><b>Sprint</b></span>
       <span class="sep"></span>
-      <span class="ev">情報通信配線技術フォーラム 2026冬<small>COMNEXT 2026 / WEST HALL</small></span>
+      <span class="ev">ICT Network Infrastructure Forum 2026<small>COMNEXT 2026 / WEST HALL</small></span>
     </a>
     <nav class="nav">
       <a href="#skills"><i>01</i>4職種の実演</a>
@@ -795,9 +862,9 @@ body.skm-lock{overflow:hidden}
   <div class="grid"></div><div class="glow"></div>
   <div class="kv-wrap">
     <div class="kv-amb" aria-hidden="true"></div>
-    <h1 class="vh-only">ICT NETWORK INFRASTRUCTURE FORUM 情報通信配線技術フォーラム冬 2026｜技能五輪国際大会 4職種デモンストレーション ＋ 国際規格紹介</h1>
+    <h1 class="vh-only">ICT Network Infrastructure Forum 2026｜技能五輪国際大会 4職種デモンストレーション ＋ 国際規格紹介</h1>
     <div class="kv" id="kv">
-      <div class="kv-img"><img src="https://forum.b2every1.org/assets/poster.png" alt="ICT NETWORK INFRASTRUCTURE FORUM 情報通信配線技術フォーラム冬。ICTネットワークインフラの品質・信頼性・持続可能性を、確かな技能で支える。2026年12月2日（水）〜4日（金）10:00–18:00 東京ビッグサイト 西ホール。主催 高度情報通信推進協議会"></div>
+      <div class="kv-img"><img src="https://forum.b2every1.org/assets/poster.png" alt="ICT Network Infrastructure Forum 2026。ICTネットワークインフラの品質・信頼性・持続可能性を、確かな技能で支える。2026年12月2日（水）〜4日（金）10:00–18:00 東京ビッグサイト 西ホール。主催 高度情報通信推進協議会"></div>
       <div class="kv-sheen" aria-hidden="true"></div>
       <div class="kv-scan" aria-hidden="true"></div>
       <div class="kv-fiber" aria-hidden="true"><i></i></div>
@@ -845,7 +912,23 @@ body.skm-lock{overflow:hidden}
 
 <!-- ============ 02 PROGRAM ============ -->
 <section class="sec prog" id="program" data-screen-label="03 Program">
-  <div class="herowrap">
+  <div class="wrap">
+    <div class="shead rv">
+      <div class="sno">SECTION<b>02</b></div>
+      <div>
+        <h2>3日間、<em>毎時</em>どこかで技能が動いている。</h2>
+        <p>WorldSkills Shanghai 2026（第48回技能五輪国際大会）の競技職種を実演します。実演時間内は、どなたでも自由にご見学いただけます。</p>
+      </div>
+    </div>
+    <div class="pm-head rv"><span class="pm-free">見学無料</span><span class="pm-range">12.2 WED — 12.4 FRI</span></div>
+    <div class="pm-scroll rv"><div id="pmatrix"></div></div>
+    <p class="pnote">● 都合によりプログラム内容が変更になる場合がございます。あらかじめご了承ください。</p>
+  </div>
+</section>
+
+<!-- ============ 03 LAB ============ -->
+<section class="sec lab" id="lab" data-screen-label="04 Fiber Sprint">
+  <div class="lab-hero">
     <div class="ffs-hero" id="hero" title="クリックで再生">
       <div class="grid"></div>
       <div class="kicker"><i></i>OPTICAL FIBER SPLICING CHALLENGE</div>
@@ -860,7 +943,6 @@ body.skm-lock{overflow:hidden}
       <div class="line"><div class="fiber l"></div><div class="fiber r"></div><div class="pulse"></div></div>
       <div class="arc"></div>
       <div class="spark"></div>
-      <div class="jp">実演・競技プログラム<small>DEC 2 — DEC 4 · 10:00 – 17:00</small></div>
       <dl class="readout">
         <dt>SPLICE TIME</dt><dd class="time" id="time">00:00.00</dd>
         <dt>EST. LOSS</dt><dd id="loss">-.-- dB</dd>
@@ -868,33 +950,9 @@ body.skm-lock{overflow:hidden}
       </dl>
     </div>
   </div>
-  <div class="wrap sec-inner">
-    <div class="shead rv">
-      <div class="sno">SECTION<b>02</b></div>
-      <div>
-        <h2>3日間、<em>毎時</em>どこかで技能が動いている。</h2>
-        <p>実演はすべて自由に見学できます。日付を切り替えて、見たい職種の時間をチェックしてください。</p>
-      </div>
-    </div>
-    <div class="ptools">
-      <div class="daytabs" id="daytabs" role="tablist">
-        <button data-day="0" aria-pressed="true"><b>12.2</b><span>水</span><small>DAY 1</small></button>
-        <button data-day="1" aria-pressed="false"><b>12.3</b><span>木</span><small>DAY 2</small></button>
-        <button data-day="2" aria-pressed="false"><b>12.4</b><span>金</span><small>DAY 3</small></button>
-      </div>
-      <div class="legend"><span class="d"><i></i>実演</span><span class="f"><i></i>FIBER SPRINT 競技</span></div>
-    </div>
-    <div class="gantt" id="gantt"></div>
-    <p class="pnote">※ プログラムは変更となる場合があります。</p>
-  </div>
-</section>
-
-<!-- ============ 03 LAB ============ -->
-<section class="sec lab" id="lab" data-screen-label="04 Fiber Sprint">
   <div class="wrap lab-grid">
     <div class="rv">
       <div class="kick"><i></i>Section 03 · Open Challenge</div>
-      <div class="ttl"><span>Fiber Fusion</span><em>Sprint</em></div>
       <p class="jp">光ファイバ接続スピードチャレンジ</p>
       <p>光ファイバを何秒でつなげるか。来場者なら誰でも自由に参加でき、融着接続の速さを競います。経験は問いません。</p>
       <div class="prize"><b>1<sup>st</sup></b><span><small>TOP PRIZE</small>1位の方には豪華賞品を進呈</span></div>
@@ -912,9 +970,6 @@ body.skm-lock{overflow:hidden}
         <div class="slot"><div class="d">12.4<small>金</small></div><ul><li>10:00–11:30</li><li>14:00–16:00 <span class="tr"></span><em>自由参加</em></li></ul></div>
         <div class="ft">実演協力　<b>エクシオグループ株式会社</b></div>
       </div>
-      <dl class="board">
-        <dt>BEST TIME</dt><dd class="t">--:--.--</dd><dd class="s">AWAITING</dd>
-      </dl>
     </div>
   </div>
 </section>
@@ -922,8 +977,11 @@ body.skm-lock{overflow:hidden}
 <!-- ============ ISO ============ -->
 <section class="sec iso-sec" data-screen-label="05 ISO">
   <div class="wrap iso rv">
-    <div class="code"><small>INT'L STANDARD</small>ISO/IEC<br>14763-5</div>
-    <h2>将来の増設まで考えて、今日の配線をつくる。</h2>
+    <div class="code"><small>INT'L STANDARD</small><span>ISO/IEC</span><span>14763-5</span></div>
+    <div class="iso-hd">
+      <h2>将来の増設まで考えて、今日の配線をつくる。</h2>
+      <dl class="iso-name"><dt>ISO/IEC 14763-5:2025</dt><dd lang="en">Information technology — Implementation and operation of customer premises cabling<br><b>Part 5: Sustainability</b></dd></dl>
+    </div>
     <div>
       <p>配線を見分けられるラベルや接続記録は、次の点検や増設を支えます。ISO/IEC 14763-5 の展示では、設計・施工・運用を通じて配線システムの持続可能性を高める考え方を紹介します。</p>
       <div class="cycle"><div><small>01</small>設計</div><div><small>02</small>施工</div><div><small>03</small>運用</div></div>
@@ -990,7 +1048,7 @@ body.skm-lock{overflow:hidden}
         <div class="ffs-mark"><div class="bar l"></div><div class="bar r"></div><div class="ring"></div><div class="ring2"></div><div class="core"></div></div>
         <div class="txt"><span>Fiber Fusion</span><b>Sprint</b><em>光ファイバ融着スピードチャレンジ</em></div>
       </div>
-      <div class="meta"><b>情報通信配線技術フォーラム 2026冬</b><br>主催　特定非営利活動法人 高度情報通信推進協議会<br>2026.12.2 — 12.4 · TOKYO BIG SIGHT WEST HALL</div>
+      <div class="meta"><b>ICT Network Infrastructure Forum 2026</b><br>主催　特定非営利活動法人 高度情報通信推進協議会<br>2026.12.2 — 12.4 · TOKYO BIG SIGHT WEST HALL</div>
     </div>
     <div class="bot"><span>© 2026 ICPC</span><a href="#top" style="text-decoration:none">BACK TO TOP ↑</a></div>
   </div>
@@ -1002,7 +1060,12 @@ body.skm-lock{overflow:hidden}
   <div class="panel" id="skmPanel" tabindex="-1"></div>
 </div>
 
-<script>
+<script>/* medal-images.js */
+/* メダル画像（埋め込み。Wix等でも外部ファイル不要） */
+window.MEDAL_IMG={"gold":"data:image/webp;base64,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","silver":"data:image/webp;base64,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","bronze":"data:image/webp;base64,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"};
+
+</script>
+<script>/* skills-data.js */
 /* 4職種データ（出典：職種紹介.docx ／ 各職種 A0 ポスター） */
 window.SKILLS = [
   {
@@ -1073,7 +1136,7 @@ window.SKILLS = [
 ];
 
 </script>
-<script>
+<script>/* skills.js */
 (function(){
 const S = window.SKILLS, grid = document.getElementById('skills-grid'), head = document.getElementById('skHead');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -1095,7 +1158,7 @@ function setHead(i){
 /* ---- カード ---- */
 grid.innerHTML = S.map((s,i)=>`
   <article class="sk rv" tabindex="0" role="button" aria-haspopup="dialog" data-i="${i}" style="--pos:${s.pos}" aria-label="${esc(s.ja)}の職種紹介を開く">
-    <div class="img"><img src="${s.imgs[0]}" alt="" loading="lazy"></div>
+    <div class="img"><img src="${(window.__R||(x=>x))(s.imgs[0])}" alt="" loading="lazy"></div>
     <span class="no">SKILL</span><span class="big">${s.no}</span>
     <div class="body">
       <h3 class="en">${esc(s.en)}</h3>
@@ -1103,7 +1166,7 @@ grid.innerHTML = S.map((s,i)=>`
       <p class="tl">${esc(s.tagline)}</p>
       <span class="more">職種紹介を見る <b>→</b></span>
       <div class="medal m-${s.medal.type}">
-        <img src="https://forum.b2every1.org/assets/medal_${s.medal.type}.png" alt="${esc(s.medal.label)}">
+        <img src="${(window.MEDAL_IMG||{})[s.medal.type]||'https://forum.b2every1.org/assets/medal_'+s.medal.type+'.png'}" alt="${esc(s.medal.label)}">
         <div><small>第48回技能五輪国際大会</small><em>${esc(s.medal.label)}</em><b>${esc(s.medal.name)}</b></div>
       </div>
       <div class="by">DEMO PARTNER<b>${esc(s.partner)}</b></div>
@@ -1129,7 +1192,7 @@ function render(i){
   panel.innerHTML=`
     <div class="bar"><span class="crumb">SKILL <b>${s.no}</b> / 04 · WORLDSKILLS SHANGHAI 2026</span><button data-close aria-label="閉じる">✕</button></div>
     <div class="hero">
-      <div class="ph"><img src="${s.imgs[0]}" alt="${esc(s.ja)}の競技の様子" style="object-position:${s.pos}"></div>
+      <div class="ph"><img src="${(window.__R||(x=>x))(s.imgs[0])}" alt="${esc(s.ja)}の競技の様子" style="object-position:${s.pos}"></div>
       <div class="tx">
         <div class="no">${s.no}</div>
         <div class="en" id="skmTitle">${esc(words.join(' '))}<span>${esc(last)}</span></div>
@@ -1145,11 +1208,11 @@ function render(i){
       </div>
       <div class="pts-h">競技の見どころ</div>
       <ol class="pts">${s.points.map(pt=>`<li><b>${esc(pt[0])}</b><span>${esc(pt[1])}</span></li>`).join('')}</ol>
-      <div class="gal">${s.imgs.slice(1).map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>
+      <div class="gal">${s.imgs.slice(1).map(src=>`<img src="${(window.__R||(x=>x))(src)}" alt="" loading="lazy">`).join('')}</div>
       <div class="ft">
         <div class="motto">${esc(s.motto)}</div>
         <div class="by">DEMO PARTNER<b>${esc(s.partner)}</b></div>
-        <a class="pdf" href="${s.pdf}" target="_blank" rel="noopener"><span class="ic">PDF</span>職種ポスター（A0）</a>
+        <a class="pdf" href="${(window.__R||(x=>x))(s.pdf)}" target="_blank" rel="noopener"><span class="ic">PDF</span>職種ポスター（A0）</a>
       </div>
     </div>
     <div class="nav2">
@@ -1180,7 +1243,72 @@ addEventListener('keydown',e=>{
 })();
 
 </script>
-<script>
+<script>/* program.js */
+/* 02 PROGRAM : 看板パネル型マトリクス（職種 × 3日 × AM/PM） */
+(function(){
+const ICON = {
+  opt:`<svg viewBox="0 0 48 32" aria-hidden="true"><rect x="4" y="4" width="40" height="10" rx="1.5" fill="#26324a" stroke="currentColor" stroke-width="1.2"/>${[0,1,2,3,4,5].map(i=>`<rect x="${8+i*5.6}" y="7" width="3.4" height="4" fill="#cfe9ff"/><path d="M${9.7+i*5.6} 14 q0 8 ${(i-2.5)*1.6} 15" fill="none" stroke="#f2c14e" stroke-width="1.3"/>`).join('')}</svg>`,
+  metal:`<svg viewBox="0 0 48 32" aria-hidden="true"><rect x="4" y="4" width="40" height="10" rx="1.5" fill="#26324a" stroke="currentColor" stroke-width="1.2"/>${['#4da3ff','#ff9f43','#3ecf8e','#b07a52'].map((c,i)=>`<rect x="${10+i*8}" y="7" width="5" height="4" fill="#cfe9ff"/><path d="M${12.5+i*8} 14 v15" stroke="${c}" stroke-width="1.6"/>`).join('')}</svg>`,
+  closure:`<svg viewBox="0 0 48 32" aria-hidden="true"><path d="M2 16h44" stroke="#9aa6bb" stroke-width="2"/><rect x="11" y="8" width="26" height="16" rx="8" fill="#26324a" stroke="currentColor" stroke-width="1.4"/><path d="M15 16 q4 -4 9 0 t9 0" fill="none" stroke="#f2c14e" stroke-width="1.3"/><circle cx="24" cy="16" r="2" fill="#ff6b6b"/></svg>`,
+  single:`<svg viewBox="0 0 48 32" aria-hidden="true"><path d="M2 17h19M27 17h19" stroke="#f2c14e" stroke-width="1.6"/><circle cx="24" cy="17" r="9" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.4 2.4"/><path d="M22 13l3 4-3 4" fill="none" stroke="#ff6b6b" stroke-width="1.4"/><circle cx="33" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>`
+};
+const NAME = {opt:'ラックパネル光成端',metal:'ラックパネルメタル成端',closure:'クロージャ光接続',single:'シングルファイバチャレンジ'};
+const A = [[['10:00–11:00'],['13:00–14:00','15:00–16:00']],[['10:00–11:00'],['13:00–14:00','15:00–16:00']],[['10:00–11:00'],['13:00–14:00']]];
+const B = [[['11:00–12:00'],['14:00–15:00','16:00–17:00']],[['11:00–12:00'],['14:00–15:00','16:00–17:00']],[['11:00–12:00'],['14:00–15:00']]];
+const ROWS = [
+  {c:'ict',en:'ICT Network Infrastructure',ja:'ICTネットワーク・インフラ施工',img:'https://forum.b2every1.org/assets/skills/ict_0.webp',pos:'50% 40%',
+   d:'通信ラック・配線パネルへの光／メタルケーブルの成端や光接続など、情報通信ネットワークを構築する施工技術。',by:'株式会社きんでん',
+   cells:[
+     [[['10:00–11:00','opt']],[['13:00–14:00','opt'],['15:00–16:00','single']]],
+     [[['10:00–11:00','metal']],[['13:00–14:00','metal'],['15:00–16:00','single']]],
+     [[['10:00–11:00','closure']],[['13:00–14:00','single']]]
+   ]},
+  {c:'sec',en:'Intelligent Security Technology',ja:'インテリジェントセキュリティ技術',img:'https://forum.b2every1.org/assets/skills/sec_0.webp',pos:'62% 40%',
+   d:'監視カメラ等のセキュリティ機器を設置・配線・設定し、システムを構築します。',by:'株式会社関電工',cells:B},
+  {c:'ren',en:'Renewable Energy',ja:'再生可能エネルギー',img:'https://forum.b2every1.org/assets/skills/ren_0.webp',pos:'50% 35%',
+   d:'太陽光・風力発電設備の設計・施工・運用・保守の技術を実演します。',by:'株式会社きんでん',cells:A},
+  {c:'uas',en:'Unmanned Aerial Systems',ja:'無人航空機システム',img:'https://forum.b2every1.org/assets/skills/uas_0.webp',pos:'60% 40%',
+   d:'点検や測量に活用されるドローンの組立・調整・操縦技術を実演します。',by:'株式会社ミライト・ワン',cells:B},
+  {c:'ffs',en:'Fiber Fusion Sprint',ja:'光ファイバ接続スピードチャレンジ',img:'https://forum.b2every1.org/assets/prog/p3.jpg',pos:'45% 50%',badge:'体験できます',
+   d:'専用の機器で、光ファイバの接続をどなたでも体験できます。最速タイムには豪華賞品。',by:'エクシオグループ株式会社',
+   cells:[[['10:00–11:30'],['14:00–17:00']],[['10:00–11:30'],['14:00–17:00']],[['10:00–11:30'],['14:00–16:00']]],tag:'自由参加'}
+];
+const DAYS=[['12.2','水'],['12.3','木'],['12.4','金']];
+
+let today=-1;{const d=Math.floor((Date.now()-new Date('2026-12-02T00:00:00+09:00'))/864e5);if(d>=0&&d<=2)today=d}
+
+const slot = (s,row) => {
+  const [t,k] = Array.isArray(s)?s:[s];
+  return `<div class="pm-slot">${row.tag?`<span class="pm-tag">${row.tag}</span>`:''}<b>${t.replace('–','<i>–</i>')}</b>${k?`<span class="pm-what">${ICON[k]}<em>${NAME[k]}</em></span>`:''}</div>`;
+};
+
+let h = `<div class="pm-grid" role="table" aria-label="実演・競技プログラム">
+  <div class="pm-corner" role="columnheader">職種 ／ 実演協力</div>
+  ${DAYS.map((d,i)=>`<div class="pm-day${i===today?' today':''}" role="columnheader" style="grid-column:${2+i*2}/span 2"><b>12月${d[0].split('.')[1]}日</b><span>${d[1]}</span>${i===today?'<small>TODAY</small>':''}</div>`).join('')}
+  ${DAYS.map((d,i)=>`<div class="pm-ap${i===today?' today':''}" style="grid-column:${2+i*2}">AM</div><div class="pm-ap${i===today?' today':''}" style="grid-column:${3+i*2}">PM</div>`).join('')}`;
+ROWS.forEach(r=>{
+  h += `<div class="pm-who c-${r.c}" role="rowheader">
+    <div class="pm-ph"><img src="${(window.__R||(x=>x))(r.img)}" alt="" loading="lazy" style="object-position:${r.pos}">${r.badge?`<span class="pm-badge">${r.badge}</span>`:''}</div>
+    <div class="pm-tx"><span class="pm-en">${r.en}</span><b>${r.ja}</b><p>${r.d}</p><small><i>実演協力</i>${r.by}</small></div>
+  </div>`;
+  r.cells.forEach((day,di)=>day.forEach(half=>{
+    h += `<div class="pm-cell c-${r.c}${di===today?' today':''}${half.length>1?' two':''}" role="cell">${half.map(s=>slot(s,r)).join('')}</div>`;
+  }));
+});
+h += `</div>
+<div class="pm-legend">
+  <div class="pm-lh"><small>ICT NETWORK INFRASTRUCTURE</small><b>ICTネットワーク・インフラ施工の実演内容</b></div>
+  ${[['opt','通信ラックの配線パネルに光ファイバケーブルを引き込み、コネクタで接続・整線します。'],
+     ['metal','LANケーブル（メタル）の心線を配線パネルの端子へ正しい配列で結線します。'],
+     ['closure','屋外の接続箱（クロージャ）内で、光ファイバ同士を融着接続して収納します。'],
+     ['single','光ファイバ1心を接続する速さと品質を競うチャレンジです。']]
+    .map(([k,t])=>`<div class="pm-li"><span class="pm-ic">${ICON[k]}</span><div><b>${NAME[k]}</b><p>${t}</p></div></div>`).join('')}
+</div>`;
+document.getElementById('pmatrix').innerHTML = h;
+})();
+
+</script>
+<script>/* comnext.js */
 (function(){
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1268,60 +1396,65 @@ function play(){
 hero.addEventListener('click',play);
 new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){play();o.disconnect()}}),{threshold:.45}).observe(hero);
 
-/* ---------- program gantt ---------- */
-const S=10,E=17;
-const rows=[
-  {n:'SKILL 02',name:'ICTネットワーク・インフラ施工',by:'株式会社きんでん',days:[
-    [['10:00','11:00','ラックパネル光成端'],['13:00','14:00','ラックパネル光成端'],['15:00','16:00','シングルファイバチャレンジ']],
-    [['10:00','11:00','ラックパネルメタル成端'],['13:00','14:00','ラックパネルメタル成端'],['15:00','16:00','シングルファイバチャレンジ']],
-    [['10:00','11:00','クロージャ光接続'],['13:00','14:00','シングルファイバチャレンジ']]]},
-  {n:'SKILL 03',name:'インテリジェントセキュリティ技術',by:'株式会社関電工',days:'B'},
-  {n:'SKILL 62',name:'再生可能エネルギー',by:'株式会社きんでん',days:'A'},
-  {n:'SKILL 64',name:'無人航空機システム',by:'株式会社ミライト・ワン',days:'B'},
-  {n:'OPEN CHALLENGE',name:'Fiber Sprint',by:'エクシオグループ株式会社',ffs:true,days:[
-    [['10:00','11:30','競技'],['14:00','17:00','自由参加',1]],
-    [['10:00','11:30','競技'],['14:00','17:00','自由参加',1]],
-    [['10:00','11:30','競技'],['14:00','16:00','自由参加',1]]]}
-];
-const pat={A:[[['10:00','11:00'],['13:00','14:00'],['15:00','16:00']],[['10:00','11:00'],['13:00','14:00'],['15:00','16:00']],[['10:00','11:00'],['13:00','14:00']]],
-           B:[[['11:00','12:00'],['14:00','15:00'],['16:00','17:00']],[['11:00','12:00'],['14:00','15:00'],['16:00','17:00']],[['11:00','12:00'],['14:00','15:00']]]};
-const toH=s=>{const[h,m]=s.split(':').map(Number);return h+m/60};
-const pct=s=>((toH(s)-S)/(E-S)*100);
-const gantt=document.getElementById('gantt');
-function render(day){
-  let h='<div class="g-axis"><div class="lbl">SKILL / TIME</div><div class="g-track">';
-  for(let x=S;x<=E;x++)h+=`<span style="left:${(x-S)/(E-S)*100}%">${x}:00</span>`;
-  h+='</div></div>';
-  rows.forEach(r=>{
-    const list=typeof r.days==='string'?pat[r.days][day]:r.days[day];
-    h+=`<div class="g-row${r.ffs?' ffs':''}"><div class="who"><span class="n">${r.n}</span><b>${r.name}</b><small>${r.by}</small></div><div class="g-track">`;
-    h+=`<div class="g-lunch" style="left:${pct('12:00')}%;width:${pct('13:00')-pct('12:00')}%"></div>`;
-    list.forEach((b,i)=>{h+=`<div class="blk${r.ffs?' f':''}${b[3]?' open':''}" style="left:calc(${pct(b[0])}% + 3px);width:calc(${pct(b[1])-pct(b[0])}% - 6px);transition-delay:${i*80}ms"><b>${b[0]}–${b[1]}</b>${b[2]?`<small>${b[2]}</small>`:''}</div>`});
-    h+='</div></div>';
-  });
-  gantt.innerHTML=h;
-  // now-line on event days
-  const now=new Date(), jst=new Date(now.getTime()+ (now.getTimezoneOffset()+540)*6e4);
-  const ds=['2026-12-02','2026-12-03','2026-12-04'];
-  const ymd=jst.getFullYear()+'-'+String(jst.getMonth()+1).padStart(2,'0')+'-'+String(jst.getDate()).padStart(2,'0');
-  const hh=jst.getHours()+jst.getMinutes()/60;
-  if(ymd===ds[day]&&hh>=S&&hh<=E){
-    const tr=gantt.querySelector('.g-axis .g-track');const lbl=gantt.querySelector('.g-axis .lbl');
-    const l=lbl.offsetWidth+(hh-S)/(E-S)*tr.offsetWidth;
-    gantt.insertAdjacentHTML('beforeend',`<div class="nowline" style="left:${l}px"><span>NOW</span></div>`);
-  }
-  if(gantt.dataset.seen){gantt.classList.remove('in');void gantt.offsetWidth;requestAnimationFrame(()=>gantt.classList.add('in'))}
-}
-// default to today's tab during the event
-let startDay=0;{const now=new Date();const d=Math.floor((now-new Date('2026-12-02T00:00:00+09:00'))/864e5);if(d>=0&&d<=2)startDay=d}
-const tabs=[...document.querySelectorAll('#daytabs button')];
-tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render(+b.dataset.day)});
-tabs[startDay].click();
-new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){gantt.classList.add('in');gantt.dataset.seen=1;o.disconnect()}}),{threshold:.25}).observe(gantt);
 })();
 
 </script>
 
-
+<!-- ============ TWEAKS : 背景バリエーション ============ -->
+<div class="bgtw" id="bgtw">
+  <div class="hd" id="bgtwHd"><span>TWEAKS · 背景</span><button id="bgtwX" aria-label="閉じる">✕</button></div>
+  <div class="bd">
+    <label><span>セクション交互<small>--ink / --ink2 を交互に</small></span><input type="checkbox" data-k="alt"></label>
+    <label><span>来場案内を明るく<small>--paper の明るいセクション</small></span><input type="checkbox" data-k="light"></label>
+    <label><span>FIBER SPRINT を深い青に<small>競技コーナーを特別扱い</small></span><input type="checkbox" data-k="deep"></label>
+    <div class="all"><button data-set="0">現状</button><button data-set="1">すべて ON</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "alt": true,
+  "light": true,
+  "deep": true
+}/*EDITMODE-END*/;
+  const t = Object.assign({}, TWEAK_DEFAULTS);
+  const root = document.documentElement, panel = document.getElementById('bgtw');
+  const boxes = panel.querySelectorAll('input[data-k]');
+  function apply(){
+    root.classList.toggle('bg-alt', !!t.alt);
+    root.classList.toggle('bg-light', !!t.light);
+    root.classList.toggle('bg-deep', !!t.deep);
+    boxes.forEach(b => b.checked = !!t[b.dataset.k]);
+  }
+  function set(edits){
+    Object.assign(t, edits); apply();
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits}, '*');
+  }
+  boxes.forEach(b => b.addEventListener('change', () => set({[b.dataset.k]: b.checked})));
+  panel.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
+    const v = btn.dataset.set === '1'; set({alt:v, light:v, deep:v});
+  }));
+  document.getElementById('bgtwX').addEventListener('click', () => {
+    panel.classList.remove('on');
+    window.parent.postMessage({type:'__edit_mode_dismissed'}, '*');
+  });
+  // drag
+  const hd = document.getElementById('bgtwHd');
+  hd.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    const r = panel.getBoundingClientRect(), ox = e.clientX - r.left, oy = e.clientY - r.top;
+    const mv = ev => { panel.style.left = (ev.clientX-ox)+'px'; panel.style.top = (ev.clientY-oy)+'px'; panel.style.right='auto'; panel.style.bottom='auto'; };
+    const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); };
+    addEventListener('pointermove', mv); addEventListener('pointerup', up);
+  });
+  window.addEventListener('message', e => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') panel.classList.add('on');
+    if (d.type === '__deactivate_edit_mode') panel.classList.remove('on');
+  });
+  window.parent.postMessage({type:'__edit_mode_available'}, '*');
+  apply();
+})();
+</script>
 </body>
 </html>
