@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<!-- COMNEXT2026 Wix埋め込み用。
+  画像・PDFは assets フォルダを公開サーバーに置き、
+  「https://forum.b2every1.org/」をその公開URLに一括置換してください。 -->
+<html lang="ja" class="bg-alt bg-light bg-deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>情報通信配線技術フォーラム 2026冬｜COMNEXT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,700;1,800;1,900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* COMNEXT 2026 — Information & Communication Wiring Forum
+   Dark instrument / optical-fiber system, derived from Fiber Fusion Sprint hero */
+:root{
+  --ink:#060a12; --ink2:#0a111d; --panel:#0d1524; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --paper:#f3f4f2; --text:#e6ebf3; --sub:#aab4c6; --mute:#7f8aa0;
+  --light:oklch(0.86 0.15 200); --light-d:oklch(0.62 0.13 215); --arc:oklch(0.86 0.15 75);
+  --cond:"Barlow Condensed",sans-serif; --mono:"JetBrains Mono",monospace; --jp:"Noto Sans JP",sans-serif;
+  --pad:clamp(24px,5vw,88px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--ink);color:var(--text);font:500 16px/1.8 var(--jp);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:var(--pad)}
+::selection{background:var(--light);color:var(--ink)}
+
+/* ---------- running fiber (global accent) ---------- */
+.fiberline{position:relative;height:1px;background:var(--line2);overflow:hidden}
+.fiberline::after{content:"";position:absolute;top:-1px;left:0;width:18%;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--light),#fff,transparent);filter:drop-shadow(0 0 6px var(--light));
+  animation:run 4.8s cubic-bezier(.5,0,.5,1) infinite;transform:translateX(-100%)}
+.fiberline.slow::after{animation-duration:7s}
+.fiberline.arc::after{background:linear-gradient(90deg,transparent,var(--arc),#fff,transparent);filter:drop-shadow(0 0 6px var(--arc))}
+@keyframes run{to{transform:translateX(560%)}}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:50;background:color-mix(in oklch,var(--ink) 82%,transparent);backdrop-filter:blur(14px) saturate(1.3)}
+.hdr .bar{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;flex:none}
+.hmark{position:relative;width:38px;height:38px;flex:none}
+.hmark .ring{position:absolute;inset:0;border-radius:50%;border:3px solid #fff}
+.hmark .ring2{position:absolute;inset:22%;border-radius:50%;border:1px solid #fff;opacity:.35}
+.hmark .core{position:absolute;left:50%;top:50%;width:20%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:var(--light);box-shadow:0 0 8px var(--light);animation:corePulse 2.4s ease-in-out infinite}
+.hmark .b{position:absolute;top:50%;height:2px;transform:translateY(-50%);background:#fff}
+.hmark .b.l{right:62%;left:-14%}.hmark .b.r{left:62%;right:-14%}
+@keyframes corePulse{50%{box-shadow:0 0 2px var(--light);opacity:.75}}
+.brand .wm{font-family:var(--cond);font-style:italic;text-transform:uppercase;line-height:.86}
+.brand .wm span{display:block;font-weight:700;font-size:13px;letter-spacing:.02em}
+.brand .wm b{display:block;font-weight:900;font-size:23px}
+.brand .sep{width:1px;height:30px;background:var(--line2)}
+.brand .ev{font-size:12px;line-height:1.35;color:var(--sub);font-weight:700}
+.brand .ev small{display:block;font:500 10px/1.4 var(--mono);letter-spacing:.18em;color:var(--mute)}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;text-decoration:none;font-size:13px;font-weight:700;padding:8px 14px;color:var(--sub);transition:color .2s}
+.nav a i{font:500 10px var(--mono);color:var(--mute);margin-right:6px;font-style:normal}
+.nav a:hover,.nav a.on{color:#fff}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;background:var(--light);box-shadow:0 0 8px var(--light);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav a.on::after{transform:scaleX(1)}
+.expo{display:flex;align-items:center;gap:10px;text-decoration:none;padding:6px 12px 6px 8px;border:1px solid var(--line2);font:500 11px var(--mono);letter-spacing:.1em;color:var(--sub);transition:border-color .2s,color .2s}
+.expo img{width:78px}
+.expo:hover{border-color:var(--light);color:#fff}
+
+/* ---------- top hero ---------- */
+.opening{position:relative;overflow:hidden;isolation:isolate;min-height:min(calc(100vh - 68px),900px);display:grid;grid-template-rows:1fr auto}
+.opening .grid{position:absolute;inset:0;z-index:-2;opacity:.6;
+  background-image:linear-gradient(to right,rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(90% 90% at 70% 40%,#000 30%,transparent 85%)}
+.opening .glow{position:absolute;z-index:-1;right:-10%;top:-20%;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,#13284a,transparent);opacity:.9}
+.opening .main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,4vw,72px);align-items:center;padding-block:clamp(40px,6vh,80px)}
+.kick{display:flex;align-items:center;gap:14px;font:600 12px/1 var(--mono);letter-spacing:.28em;color:var(--mute);text-transform:uppercase}
+.kick i{display:block;width:44px;height:1px;background:var(--light);box-shadow:0 0 6px var(--light)}
+.opening h1{margin:28px 0 26px;font-weight:900;font-size:clamp(40px,4.6vw,76px);line-height:1.18;letter-spacing:-.03em;color:#fff;text-wrap:balance}
+.opening h1 .ln{display:block;overflow:hidden}
+.opening h1 .ln>span{display:inline-block;transform:translateY(105%)}
+.opening.ready h1 .ln>span{animation:lineUp .9s cubic-bezier(.2,.8,.2,1) forwards}
+.opening.ready h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.opening.ready h1 .ln:nth-child(3)>span{animation-delay:.24s}
+.opening h1 em{font-style:normal;color:var(--light);text-shadow:0 0 28px color-mix(in oklch,var(--light) 45%,transparent)}
+@keyframes lineUp{to{transform:none}}
+.opening .lead{color:var(--sub);font-size:17px;max-width:30em;margin:0 0 34px;text-wrap:pretty}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;padding:15px 22px;text-decoration:none;font-weight:700;font-size:15px;border:1px solid var(--line2);color:#fff;overflow:hidden;transition:border-color .25s,background .25s}
+.btn .ar{font-family:var(--mono);transition:transform .25s}
+.btn:hover .ar{transform:translateX(4px)}
+.btn:hover{border-color:var(--light)}
+.btn.pri{background:var(--light);color:var(--ink);border-color:var(--light)}
+.btn.pri:hover{background:#fff;border-color:#fff}
+.btn.amb{border-color:color-mix(in oklch,var(--arc) 55%,transparent)}
+.btn.amb b{color:var(--arc);font-family:var(--cond);font-style:italic;font-size:18px;letter-spacing:.02em}
+.btn.amb:hover{border-color:var(--arc)}
+
+/* intro poster -> main transition */
+.intro{position:absolute;inset:0;z-index:6;background:#0c2051;overflow:hidden;clip-path:inset(0 0 0 0);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1)}
+.intro .bg{position:absolute;inset:-60px;background:url(https://forum.b2every1.org/assets/poster.png) center/cover;filter:blur(40px) brightness(.55) saturate(1.2)}
+.intro img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;animation:introZoom 6s ease-out both}
+@keyframes introZoom{from{transform:scale(1.04);opacity:0}12%{opacity:1}to{transform:scale(1)}}
+.intro .ipr{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.12)}
+.intro .ipr i{position:absolute;inset:0;background:var(--light);box-shadow:0 0 10px var(--light);transform-origin:left;animation:introProg var(--introDur,4.8s) linear both}
+@keyframes introProg{from{transform:scaleX(0)}}
+.intro .skip{position:absolute;right:var(--pad);bottom:22px;background:rgba(6,10,18,.55);border:1px solid rgba(255,255,255,.3);color:#fff;font:600 11px var(--mono);letter-spacing:.18em;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
+.intro .skip:hover{border-color:var(--light);color:var(--light)}
+.intro.out{clip-path:inset(0 0 0 100%)}
+.intro.gone{display:none}
+.wipe{position:absolute;top:0;bottom:0;left:0;width:3px;z-index:7;background:#fff;box-shadow:0 0 18px var(--light),0 0 50px var(--light);opacity:0;pointer-events:none}
+.wipe.go{animation:wipe 1.1s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes wipe{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+
+/* HUD photo viewer */
+.hud{position:relative;aspect-ratio:4/3;background:#0b1424}
+.hud .ph{position:absolute;inset:0;overflow:hidden}
+.hud .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(.8) contrast(1.05);transform:scale(1.06);transition:opacity .9s,transform 6s linear;clip-path:inset(0 0 0 0)}
+.hud .ph img.on{opacity:1;transform:scale(1)}
+.hud .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,18,.2),transparent 30%,transparent 60%,rgba(6,10,18,.85)),repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+.hud .scan{position:absolute;left:0;right:0;height:2px;top:0;background:linear-gradient(90deg,transparent,var(--light),transparent);opacity:.55;box-shadow:0 0 14px var(--light);animation:scan 5.5s linear infinite}
+@keyframes scan{to{top:100%}}
+.hud .cn{position:absolute;width:22px;height:22px;border:2px solid var(--light)}
+.hud .cn.a{left:-8px;top:-8px;border-right:0;border-bottom:0}
+.hud .cn.b{right:-8px;top:-8px;border-left:0;border-bottom:0}
+.hud .cn.c{left:-8px;bottom:-8px;border-right:0;border-top:0}
+.hud .cn.d{right:-8px;bottom:-8px;border-left:0;border-top:0}
+.hud .rec{position:absolute;left:18px;top:16px;font:500 11px/1 var(--mono);letter-spacing:.18em;color:#fff;display:flex;align-items:center;gap:8px}
+.hud .rec::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--arc);box-shadow:0 0 8px var(--arc);animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:.15}}
+.hud .tc{position:absolute;right:18px;top:16px;font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--sub);font-variant-numeric:tabular-nums}
+.hud .cap{position:absolute;left:20px;right:20px;bottom:18px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.hud .cap .no{font:italic 900 64px/.8 var(--cond);color:var(--light);text-shadow:0 0 22px color-mix(in oklch,var(--light) 50%,transparent)}
+.hud .cap .nm{flex:1;font-weight:900;font-size:19px;line-height:1.3;color:#fff}
+.hud .cap .nm small{display:block;font:500 10px/1.6 var(--mono);letter-spacing:.2em;color:var(--mute)}
+.hud .ticks{display:flex;gap:6px}
+.hud .ticks i{width:22px;height:3px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.hud .ticks i.on::after{content:"";position:absolute;inset:0;background:var(--light);transform-origin:left;animation:tick var(--d,4.5s) linear forwards}
+.hud .ticks i.done{background:var(--light)}
+@keyframes tick{from{transform:scaleX(0)}}
+.paused *{animation-play-state:paused!important}
+
+/* bottom data bar */
+.databar{border-top:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,255,255,.015),transparent)}
+.databar .cells{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;}
+.cell{padding:22px 26px 24px;border-left:1px solid var(--line)}
+.cell:first-child{border-left:0;padding-left:0}
+.cell dt{font:600 10.5px/1 var(--mono);letter-spacing:.24em;color:var(--mute);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.cell dt::before{content:"";width:5px;height:5px;background:var(--light)}
+.cell dd{margin:0;color:#fff;font-weight:700;line-height:1.3}
+.cell .big{font:italic 800 clamp(30px,2.8vw,44px)/.9 var(--cond);letter-spacing:.01em}
+.cell .big .dw{display:inline-grid;place-items:center;width:1.1em;height:1.1em;margin:0 .1em;border-radius:50%;background:#fff;color:var(--ink);font:900 .42em/1 var(--jp);vertical-align:.35em}
+.cell .big .to{color:var(--mute);margin:0 .25em;font-weight:700}
+.cell .sm{display:block;font-size:12px;color:var(--sub);font-weight:500;margin-top:8px}
+.cell .tbd{color:var(--mute);font:500 13px var(--mono);letter-spacing:.06em}
+.count{display:flex;gap:14px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.count div{display:flex;flex-direction:column;align-items:flex-start}
+.count b{font:600 30px/1 var(--mono);color:var(--light)}
+.count span{font-size:9.5px;letter-spacing:.2em;color:var(--mute);margin-top:6px}
+.motionbtn{position:absolute;right:var(--pad);top:18px;z-index:3;background:none;border:1px solid var(--line2);color:var(--mute);font:500 10.5px var(--mono);letter-spacing:.14em;padding:6px 10px;cursor:pointer}
+.motionbtn:hover{color:#fff;border-color:var(--sub)}
+
+/* ---------- section scaffolding ---------- */
+.sec{position:relative;padding-block:clamp(80px,10vw,140px)}
+.shead{display:grid;grid-template-columns:200px 1fr;gap:40px;margin-bottom:56px;align-items:start}
+.sno{font:600 12px/1 var(--mono);letter-spacing:.24em;color:var(--mute);padding-top:14px;display:flex;flex-direction:column;gap:14px}
+.sno b{font:italic 900 72px/.8 var(--cond);color:transparent;-webkit-text-stroke:1px var(--line2);letter-spacing:0}
+.shead h2{margin:0;font-weight:900;font-size:clamp(30px,3.4vw,52px);line-height:1.25;letter-spacing:-.03em;color:#fff;text-wrap:balance}
+.shead h2 em{font-style:normal;color:var(--light)}
+.shead p{margin:22px 0 0;color:var(--sub);max-width:42em;text-wrap:pretty}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);margin-bottom:64px}
+.stat{padding:26px 28px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font:italic 900 clamp(56px,5.4vw,88px)/.85 var(--cond);color:#fff;font-variant-numeric:tabular-nums}
+.stat b sup{font-size:.36em;color:var(--light);vertical-align:top;margin-left:4px;font-style:normal;font-family:var(--jp)}
+.stat span{display:block;margin-top:12px;font-size:13px;color:var(--sub);font-weight:700}
+
+/* skill cards */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
+.sk{position:relative;background:var(--ink);display:flex;flex-direction:column;overflow:hidden}
+.sk .img{position:relative;aspect-ratio:4/3.4;overflow:hidden}
+.sk .img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(1.1) brightness(.75);transform:scale(1.04);transition:filter .6s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.sk .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--ink));mix-blend-mode:normal}
+.sk .img::before{content:"";position:absolute;inset:0;z-index:1;background:var(--light-d);mix-blend-mode:color;opacity:.55;transition:opacity .6s}
+.sk:hover .img img{filter:none;transform:scale(1)}
+.sk:hover .img::before{opacity:0}
+.sk .no{position:absolute;z-index:2;left:22px;top:18px;font:500 11px/1 var(--mono);letter-spacing:.2em;color:#fff}
+.sk .big{position:absolute;z-index:2;right:16px;top:6px;font:italic 900 96px/1 var(--cond);color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.55);transition:color .4s,-webkit-text-stroke-color .4s}
+.sk:hover .big{color:var(--light);-webkit-text-stroke-color:var(--light)}
+.sk .body{padding:4px 24px 28px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2;margin-top:-34px}
+.sk h3{margin:0 0 12px;font-size:21px;font-weight:900;line-height:1.35;color:#fff;letter-spacing:-.01em;min-height:2.7em;display:flex;align-items:flex-end}
+.sk p{margin:0 0 22px;color:var(--sub);font-size:14px;line-height:1.85;flex:1}
+.sk .by{font:500 11px/1.5 var(--mono);color:var(--mute);letter-spacing:.06em;border-top:1px solid var(--line);padding-top:14px}
+.sk .by b{display:block;font:700 13px var(--jp);color:var(--text);letter-spacing:0;margin-top:4px}
+.sk .bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--light);box-shadow:0 0 10px var(--light);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.8,.2,1);z-index:3}
+.sk:hover .bar{transform:scaleX(1)}
+
+/* ---------- program ---------- */
+.prog{padding-top:0}
+.prog .herowrap{border-bottom:1px solid var(--line2);background:#060a12}
+.prog .herowrap .ffs-hero{max-width:1120px;margin:0 auto}
+.prog .sec-inner{padding-top:clamp(64px,8vw,110px)}
+.daytabs{display:flex;gap:0;border:1px solid var(--line2);width:max-content;margin-bottom:28px}
+.daytabs button{all:unset;cursor:pointer;padding:14px 26px;border-left:1px solid var(--line2);display:flex;align-items:baseline;gap:10px;color:var(--sub);transition:background .2s,color .2s}
+.daytabs button:first-child{border-left:0}
+.daytabs button b{font:italic 800 28px/1 var(--cond);color:inherit}
+.daytabs button span{font-size:13px;font-weight:700}
+.daytabs button small{font:500 10px var(--mono);letter-spacing:.16em;color:var(--mute)}
+.daytabs button:hover{color:#fff}
+.daytabs button[aria-pressed=true]{background:var(--light);color:var(--ink)}
+.daytabs button[aria-pressed=true] small{color:color-mix(in oklch,var(--ink) 60%,transparent)}
+.ptools{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.legend{display:flex;gap:22px;font:500 11px var(--mono);letter-spacing:.12em;color:var(--mute);margin-bottom:34px}
+.legend i{display:inline-block;width:18px;height:8px;margin-right:8px;vertical-align:middle}
+.legend .d i{background:color-mix(in oklch,var(--light) 30%,var(--panel));border-left:2px solid var(--light)}
+.legend .f i{background:color-mix(in oklch,var(--arc) 30%,var(--panel));border-left:2px solid var(--arc)}
+
+.gantt{position:relative;border:1px solid var(--line2);background:var(--ink2)}
+.g-axis,.g-row{display:grid;grid-template-columns:260px 1fr}
+.g-axis{border-bottom:1px solid var(--line2);height:44px}
+.g-axis .lbl{display:flex;align-items:center;padding-left:22px;font:600 10.5px var(--mono);letter-spacing:.22em;color:var(--mute);border-right:1px solid var(--line2)}
+.g-track{position:relative}
+.g-axis .g-track span{position:absolute;top:0;bottom:0;display:flex;align-items:center;transform:translateX(-50%);font:500 12px var(--mono);color:var(--sub);font-variant-numeric:tabular-nums}
+.g-axis .g-track span:first-child{transform:none;padding-left:8px}
+.g-axis .g-track span:last-child{transform:translateX(-100%);padding-right:8px}
+.g-row{border-bottom:1px solid var(--line);min-height:96px}
+.g-row:last-child{border-bottom:0}
+.g-row .who{padding:18px 22px;border-right:1px solid var(--line2);display:flex;flex-direction:column;justify-content:center}
+.g-row .who b{font-size:15px;font-weight:900;color:#fff;line-height:1.4}
+.g-row .who small{font:500 11px var(--mono);color:var(--mute);letter-spacing:.04em;margin-top:4px}
+.g-row .who .n{font:500 10px var(--mono);letter-spacing:.2em;color:var(--light);margin-bottom:6px}
+.g-row.ffs{background:linear-gradient(90deg,color-mix(in oklch,var(--arc) 7%,transparent),transparent 60%)}
+.g-row.ffs .who b{font-family:var(--cond);font-style:italic;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;line-height:1}
+.g-row.ffs .who .n{color:var(--arc)}
+.g-row .g-track{background-image:linear-gradient(to right,var(--line) 1px,transparent 1px);background-size:calc(100%/14) 100%}
+.g-lunch{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 6px,transparent 6px 12px);pointer-events:none}
+.blk{position:absolute;top:14px;bottom:14px;padding:8px 10px;overflow:hidden;
+  background:color-mix(in oklch,var(--light) 16%,var(--panel));border-left:2px solid var(--light);
+  transform-origin:left;transform:scaleX(0);transition:transform .7s cubic-bezier(.2,.8,.2,1),background .2s}
+.gantt.in .blk{transform:scaleX(1)}
+.blk:hover{background:color-mix(in oklch,var(--light) 30%,var(--panel))}
+.blk b{display:block;font:600 12px/1.2 var(--mono);color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.blk small{display:block;font-size:11.5px;line-height:1.35;color:var(--sub);margin-top:4px;font-weight:700}
+.blk.f{background:color-mix(in oklch,var(--arc) 18%,var(--panel));border-left-color:var(--arc)}
+.blk.f:hover{background:color-mix(in oklch,var(--arc) 32%,var(--panel))}
+.blk.f small{color:var(--arc)}
+.blk.open::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,color-mix(in oklch,var(--arc) 25%,transparent) 22px 23px);pointer-events:none}
+.nowline{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 10px #fff;z-index:4;pointer-events:none}
+.nowline span{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font:600 10px var(--mono);background:#fff;color:var(--ink);padding:2px 6px;letter-spacing:.1em}
+.pnote{margin-top:16px;font-size:13px;color:var(--mute)}
+
+/* ---------- FFS lab ---------- */
+.lab{background:var(--ink2);border-block:1px solid var(--line2);overflow:hidden}
+.lab::before{content:"";position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:46%;aspect-ratio:1;border-radius:50%;border:2px solid var(--line);box-shadow:inset 0 0 0 60px var(--ink2),inset 0 0 0 61px var(--line)}
+.lab-grid{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,96px);align-items:start}
+.lab .ttl{font:italic 900 clamp(64px,7.6vw,128px)/.82 var(--cond);text-transform:uppercase;color:#fff;margin:28px 0 22px;letter-spacing:-.005em}
+.lab .ttl span{display:block;font-weight:700;font-size:.5em;color:var(--sub)}
+.lab .ttl em{font-style:inherit;color:var(--arc);text-shadow:0 0 30px color-mix(in oklch,var(--arc) 40%,transparent)}
+.lab .jp{font-weight:900;font-size:22px;color:#fff;margin:0 0 18px}
+.lab p{color:var(--sub);margin:0 0 30px;max-width:30em}
+.prize{display:flex;align-items:center;gap:18px;padding:18px 22px;border:1px solid color-mix(in oklch,var(--arc) 50%,transparent);background:color-mix(in oklch,var(--arc) 7%,transparent);max-width:460px}
+.prize b{font:italic 900 54px/.8 var(--cond);color:var(--arc)}
+.prize b sup{font-size:.4em;vertical-align:top}
+.prize span{font-weight:900;color:#fff;font-size:17px;line-height:1.4}
+.prize span small{display:block;font:500 11px var(--mono);color:var(--mute);letter-spacing:.14em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;border-top:1px solid var(--line2)}
+.steps div{padding:18px 18px 0 0}
+.steps b{display:block;font:italic 800 26px/1 var(--cond);color:#fff;letter-spacing:.02em}
+.steps i{font:500 10px var(--mono);letter-spacing:.2em;color:var(--light);font-style:normal}
+.steps small{display:block;color:var(--sub);font-size:13px;margin-top:6px}
+
+.slots{border:1px solid var(--line2);background:var(--ink)}
+.slots .hd{display:flex;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line2);font:600 10.5px var(--mono);letter-spacing:.22em;color:var(--mute)}
+.slots .hd b{color:var(--arc);font-weight:600}
+.slot{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:22px;border-bottom:1px solid var(--line)}
+.slot:last-of-type{border-bottom:0}
+.slot .d{font:italic 800 34px/.9 var(--cond);color:#fff}
+.slot .d small{display:block;font:700 12px var(--jp);font-style:normal;color:var(--sub);margin-top:6px}
+.slot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.slot li{display:flex;align-items:center;gap:14px;font:600 20px/1 var(--mono);color:#fff;font-variant-numeric:tabular-nums}
+.slot li em{font:700 11px var(--jp);font-style:normal;padding:4px 8px;border:1px solid var(--arc);color:var(--arc);letter-spacing:.06em}
+.slot li .tr{flex:1;height:1px;background:var(--line2);position:relative}
+.slots .ft{padding:14px 22px;border-top:1px solid var(--line2);font-size:12px;color:var(--mute)}
+.slots .ft b{color:var(--text)}
+.board{margin-top:22px;border:1px solid var(--line2);background:var(--ink);padding:18px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:8px 20px;align-items:baseline;font-family:var(--mono)}
+.board dt{font-size:10.5px;letter-spacing:.22em;color:var(--mute)}
+.board dd{margin:0;font-variant-numeric:tabular-nums}
+.board .t{font-size:40px;font-weight:600;color:#fff;line-height:1}
+.board .s{font-size:13px;color:var(--light);letter-spacing:.14em}
+
+/* ---------- ISO ---------- */
+.iso{display:grid;grid-template-columns:200px 1fr 1fr;gap:40px;align-items:start}
+.iso .code{font:italic 900 clamp(48px,5vw,80px)/.9 var(--cond);color:#fff}
+.iso .code small{display:block;font:600 12px var(--mono);font-style:normal;letter-spacing:.24em;color:var(--light);margin-bottom:14px}
+.iso h2{margin:0;font-weight:900;font-size:clamp(26px,2.6vw,40px);line-height:1.35;color:#fff;letter-spacing:-.03em;text-wrap:balance}
+.iso p{margin:0;color:var(--sub)}
+.cycle{display:flex;margin-top:28px;border:1px solid var(--line2)}
+.cycle div{flex:1;padding:14px 16px;border-left:1px solid var(--line2);font-weight:900;color:#fff;font-size:15px}
+.cycle div:first-child{border-left:0}
+.cycle div small{display:block;font:500 10px var(--mono);letter-spacing:.2em;color:var(--mute)}
+
+/* ---------- visit ---------- */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line2);border:1px solid var(--line2)}
+.visit>div{background:var(--ink);padding:36px}
+.info{display:grid;grid-template-columns:120px 1fr;gap:18px 20px;margin:0}
+.info dt{font:600 10.5px/1.9 var(--mono);letter-spacing:.22em;color:var(--mute)}
+.info dd{margin:0;color:#fff;font-weight:700}
+.info dd small{display:block;color:var(--sub);font-weight:500;font-size:13px}
+.docs{display:grid;gap:10px}
+.doc{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:18px 20px;border:1px solid var(--line2);text-decoration:none;transition:border-color .2s,background .2s}
+.doc:hover{border-color:var(--light);background:color-mix(in oklch,var(--light) 6%,transparent)}
+.doc .ic{font:600 10px var(--mono);letter-spacing:.14em;padding:6px 8px;border:1px solid var(--light);color:var(--light)}
+.doc b{color:#fff;font-weight:900}
+.doc small{display:block;font:500 11px var(--mono);color:var(--mute)}
+.doc .dl{font-family:var(--mono);color:var(--sub);transition:transform .2s}
+.doc:hover .dl{transform:translateY(3px);color:var(--light)}
+.vh{font:600 10.5px var(--mono);letter-spacing:.22em;color:var(--mute);margin:0 0 22px;display:flex;align-items:center;gap:10px}
+.vh::before{content:"";width:5px;height:5px;background:var(--light)}
+
+/* ---------- partners ---------- */
+.partners{display:grid;grid-template-columns:minmax(260px,1fr) 3fr;gap:2px;background:var(--line2);border:1px solid var(--line2);margin-top:72px}
+.partners>div{background:var(--ink);padding:32px 36px}
+.partners .role{font:600 10.5px var(--mono);letter-spacing:.22em;color:var(--mute);margin:0 0 22px;display:flex;align-items:center;gap:10px}
+.partners .role::before{content:"";width:5px;height:5px;background:var(--light)}
+.org-col{display:flex;flex-direction:column}
+.org-col .icpc{width:100%;max-width:300px;margin:auto 0;background:#fff;padding:16px 18px;box-sizing:border-box}
+.ptr-col{grid-column:1/-1}
+.partners .role .pend{margin-left:6px;padding:3px 7px;border:1px solid currentColor;font-size:9.5px;letter-spacing:.12em}
+.ptr-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 0}
+.ptr-list li{font-weight:700;font-size:14px;color:var(--text);padding:0 18px;border-left:1px solid var(--line2);line-height:1.2}
+.ptr-list li:first-child{padding-left:0;border-left:0}
+.tier{display:grid;gap:10px;margin-bottom:10px}
+.tier:last-child{margin-bottom:0}
+.t1{grid-template-columns:minmax(0,1fr);justify-items:start}
+.t2{grid-template-columns:repeat(4,1fr)}
+.t3{grid-template-columns:repeat(5,1fr)}
+.lg{position:relative;background:#fff;display:flex;align-items:center;justify-content:center;height:92px;padding:14px 18px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.lg img{max-width:100%;max-height:100%;object-fit:contain}
+.lg::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--light);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.lg:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.lg:hover::after{transform:scaleX(1)}
+.lg.xl{width:min(100%,420px);height:120px;padding:18px 26px}
+.t3 .lg{height:78px;padding:12px 16px}
+@media(max-width:900px){.t2{grid-template-columns:1fr 1fr}.t3{grid-template-columns:1fr 1fr}}
+
+/* ---------- footer ---------- */
+.ftr{border-top:1px solid var(--line2);padding-block:64px 40px}
+.ftr .top2{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.ffs-lock{container-type:inline-size;width:min(560px,100%);aspect-ratio:3.6/1;display:flex;align-items:center;gap:5cqw;color:#fff}
+.ffs-mark{position:relative;flex:none;width:19cqw;aspect-ratio:1}
+.ffs-mark .ring{position:absolute;inset:0;border-radius:50%;border:1.2cqw solid currentColor}
+.ffs-mark .ring2{position:absolute;inset:22%;border-radius:50%;border:.4cqw solid currentColor;opacity:.35}
+.ffs-mark .core{position:absolute;left:50%;top:50%;width:18%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:var(--light);box-shadow:0 0 2cqw var(--light)}
+.ffs-mark .bar{position:absolute;top:50%;height:.9cqw;transform:translateY(-50%);background:currentColor}
+.ffs-mark .bar.l{right:62%;left:-8%}.ffs-mark .bar.r{left:62%;right:-8%}
+.ffs-lock .txt{font-family:var(--cond);font-style:italic;text-transform:uppercase;line-height:.88}
+.ffs-lock .txt b{display:block;font-weight:900;font-size:13cqw}
+.ffs-lock .txt span{display:block;font-weight:700;font-size:7.2cqw}
+.ffs-lock .txt em{display:block;font:700 3.9cqw/1 var(--jp);font-style:normal;letter-spacing:.06em;margin-top:2.6cqw;text-transform:none;color:#cfd6e3}
+.ftr .meta{font:500 12px/2 var(--mono);color:var(--mute);text-align:right;letter-spacing:.06em}
+.ftr .meta b{color:var(--text);font-family:var(--jp)}
+.ftr .bot{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font:500 11px var(--mono);letter-spacing:.14em;color:var(--mute)}
+
+/* ---------- responsive ---------- */
+@media(max-width:1180px){
+  .brand .sep,.brand .ev{display:none}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .databar .cells{grid-template-columns:1fr 1fr}
+  .cell:nth-child(3){border-left:0;padding-left:0}
+  .cell:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:900px){
+  .nav{display:none}
+  .opening .main,.lab-grid,.visit,.iso,.shead,.partners{grid-template-columns:1fr}
+  .shead{gap:16px}.sno b{font-size:48px}
+  .stats{grid-template-columns:1fr 1fr}
+  .g-axis,.g-row{grid-template-columns:140px 1fr}
+  .plogos{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .opening h1 .ln>span{transform:none}
+  .blk{transform:none}
+}
+
+</style>
+<style>
+/* Fiber Fusion Sprint — 01 Web Hero (from supplied component) */
+.ffs-hero *{box-sizing:border-box;margin:0;padding:0}
+.ffs-hero{--ink:#060a12;--light:oklch(0.86 0.15 200);--arc:oklch(0.86 0.15 75);--mute:#7f8aa0;font-family:"Noto Sans JP",sans-serif}
+
+  .ffs-hero{
+    --jx:71%;
+    position:relative;container-type:inline-size;width:100%;aspect-ratio:2/1;overflow:hidden;
+    background:
+      radial-gradient(60% 80% at var(--jx) 66%, #12203a 0%, transparent 60%),
+      var(--ink);
+    color:#fff;user-select:none;cursor:pointer;
+  }
+  .ffs-hero .grid{position:absolute;inset:0;opacity:.5;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:4cqw 4cqw;background-position:-1px -1px}
+  .ffs-hero .kicker{position:absolute;left:5cqw;top:4.4cqw;font:600 1.15cqw/1 "JetBrains Mono",monospace;letter-spacing:.3em;color:var(--mute);display:flex;gap:1.6cqw;align-items:center}
+  .ffs-hero .kicker i{display:block;width:4cqw;height:1px;background:var(--light)}
+  .ffs-hero .title{position:absolute;left:4.6cqw;top:7.2cqw;font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;line-height:.86;letter-spacing:-.005em;text-transform:uppercase}
+  .ffs-hero .t1{display:block;font-size:8.6cqw;font-weight:700}
+  .ffs-hero .t2{display:block;font-size:17.5cqw;font-weight:900;position:relative;margin-left:-.4cqw}
+  .ffs-hero .t2 .streak{position:absolute;right:100%;top:50%;height:.35cqw;background:var(--light);margin-right:1.2cqw;box-shadow:0 0 1.2cqw var(--light)}
+  .ffs-hero .t2 .streak:nth-child(1){width:6cqw;margin-top:-3cqw;opacity:.9}
+  .ffs-hero .t2 .streak:nth-child(2){width:3cqw;margin-top:0;opacity:.5}
+  .ffs-hero .t2 .streak:nth-child(3){width:4.5cqw;margin-top:3cqw;opacity:.7}
+
+  /* fiber line */
+  .ffs-hero .line{position:absolute;left:0;right:0;top:66%;height:1.2cqw;transform:translateY(-50%)}
+  .ffs-hero .fiber{position:absolute;top:0;height:100%;background:linear-gradient(#3a4660,#222b3c 55%,#1a2130);}
+  .ffs-hero .fiber::after{content:"";position:absolute;left:0;right:0;top:50%;height:.22cqw;transform:translateY(-50%);background:#3b4a66}
+  .ffs-hero .fiber.l{left:0;width:var(--jx)}
+  .ffs-hero .fiber.r{left:var(--jx);right:0}
+  .ffs-hero .fiber.l::after{background:var(--light);box-shadow:0 0 .8cqw var(--light),0 0 2.4cqw color-mix(in oklch,var(--light) 50%,transparent)}
+  .ffs-hero .fiber.r::after{transition:none}
+  .ffs-hero .pulse{position:absolute;top:50%;left:0;width:14cqw;height:.9cqw;transform:translate(-100%,-50%);border-radius:50%;
+    background:radial-gradient(closest-side,#fff,var(--light) 40%,transparent);opacity:0;filter:blur(.15cqw)}
+
+  /* electrodes */
+  .ffs-hero .el{position:absolute;left:var(--jx);width:1.5cqw;height:9cqw;transform:translateX(-50%);height:4.4cqw;
+    background:linear-gradient(90deg,#4b556a,#c9cfda 45%,#5b6579);}
+  .ffs-hero .el.top{bottom:calc(34% + 2.4cqw);clip-path:polygon(0 0,100% 0,100% 70%,55% 100%,45% 100%,0 70%)}
+  .ffs-hero .el.bot{top:calc(66% + 2.4cqw);clip-path:polygon(45% 0,55% 0,100% 30%,100% 100%,0 100%,0 30%)}
+  .ffs-hero .arc{position:absolute;left:var(--jx);top:66%;width:.3cqw;height:4.8cqw;transform:translate(-50%,-50%);background:var(--arc);box-shadow:0 0 1cqw var(--arc),0 0 3cqw var(--arc);opacity:0}
+  .ffs-hero .spark{position:absolute;left:var(--jx);top:66%;width:16cqw;height:16cqw;transform:translate(-50%,-50%) scale(.2);border-radius:50%;
+    background:radial-gradient(closest-side,#fff 0,color-mix(in oklch,var(--arc) 90%,white) 14%,color-mix(in oklch,var(--arc) 35%,transparent) 40%,transparent 70%);opacity:0;mix-blend-mode:screen}
+
+  /* readouts */
+  .ffs-hero .jp{position:absolute;left:5cqw;top:79%;font-weight:900;font-size:3cqw;letter-spacing:.06em;line-height:1}
+  .ffs-hero .jp small{display:block;margin-top:1.4cqw;font:500 1.15cqw/1 "JetBrains Mono",monospace;letter-spacing:.24em;color:var(--mute)}
+  .ffs-hero .readout{position:absolute;right:5cqw;top:79%;display:grid;grid-template-columns:auto auto;column-gap:2cqw;row-gap:.6cqw;font-family:"JetBrains Mono",monospace;align-items:baseline}
+  .ffs-hero .readout dt{font-size:1.05cqw;letter-spacing:.24em;color:var(--mute);text-align:right}
+  .ffs-hero .readout dd{font-size:1.6cqw;font-weight:600;color:#cfd6e3;font-variant-numeric:tabular-nums}
+  .ffs-hero .readout dd.time{font-size:3.4cqw;color:#fff;line-height:1}
+  .ffs-hero .readout dd.ok{color:var(--light)}
+  .ffs-hero .tag{position:absolute;left:var(--jx);top:calc(66% - 9cqw);transform:translateX(1.6cqw);font:500 1cqw/1.5 "JetBrains Mono",monospace;letter-spacing:.14em;color:var(--mute);white-space:nowrap}
+  .ffs-hero .tag b{color:var(--arc);font-weight:600}
+  .ffs-hero .corner{position:absolute;right:5cqw;top:4.4cqw;font:600 1.15cqw/1 "JetBrains Mono",monospace;letter-spacing:.3em;color:var(--mute)}
+
+  /* animation */
+  .ffs-hero.play .fiber.l{animation:ffsInL 1.1s cubic-bezier(.2,.8,.2,1) both}
+  .ffs-hero.play .fiber.r{animation:ffsInR 1.1s cubic-bezier(.2,.8,.2,1) both}
+  .ffs-hero.play .arc{animation:ffsArc .5s 1.1s steps(1) both}
+  .ffs-hero.play .spark{animation:ffsSpark .7s 1.15s ease-out both}
+  .ffs-hero.play .pulse{animation:ffsPulse 1s 1.5s cubic-bezier(.4,0,.2,1) both}
+  .ffs-hero.play .fiber.r::after{animation:ffsLit .01s 1.9s both}
+  .ffs-hero.done .fiber.r::after,.ffs-hero.play .fiber.r::after{}
+  .ffs-hero.lit .fiber.r::after{background:var(--light);box-shadow:0 0 .8cqw var(--light),0 0 2.4cqw color-mix(in oklch,var(--light) 50%,transparent)}
+  @keyframes ffsInL{from{transform:translateX(-16cqw)}to{transform:translateX(0)}}
+  @keyframes ffsInR{from{transform:translateX(16cqw)}to{transform:translateX(0)}}
+  @keyframes ffsArc{0%{opacity:1}12%{opacity:.2}24%{opacity:1}40%{opacity:.4}55%{opacity:1}80%{opacity:.6}100%{opacity:0}}
+  @keyframes ffsSpark{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}25%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.6)}}
+  @keyframes ffsPulse{0%{opacity:0;left:var(--jx)}15%{opacity:1}100%{opacity:0;left:115%}}
+  @keyframes ffsLit{to{background:var(--light);box-shadow:0 0 .8cqw var(--light),0 0 2.4cqw color-mix(in oklch,var(--light) 50%,transparent)}}
+
+  
+  @media (prefers-reduced-motion:reduce){.ffs-hero.play *{animation:none!important}}
+
+</style>
+<style>
+/* ===== 背景バリエーション（Tweaks で切替） =====
+   html に付くクラス:
+   .bg-alt    … セクション交互（--ink / --ink2）
+   .bg-light  … 来場案内を明るい紙色に
+   .bg-deep   … FIBER SPRINT 帯を深い青に
+*/
+
+/* ---------- 1. セクション交互 ---------- */
+/* 順番: Top(ink) → Skills(ink2) → Program(ink) → Lab(ink2・既存) → ISO(ink) → Visit(ink2) → Footer(ink) */
+.bg-alt #skills,
+.bg-alt #visit{background:var(--ink2);border-block:1px solid var(--line)}
+.bg-alt #program,
+.bg-alt .iso-sec{background:var(--ink)}
+.bg-alt .iso-sec + .wrap{display:none}           /* 交互にすると区切り線は不要 */
+
+/* ---------- 2. 来場案内を明るく ---------- */
+.bg-light #visit{
+  --vis-ink:#0b1220; --vis-sub:#4a5568; --vis-mute:#6b7487;
+  --vis-line:rgba(6,10,18,.10); --vis-line2:rgba(6,10,18,.16);
+  --vis-acc:oklch(0.52 0.13 225);
+  background:var(--paper);color:var(--vis-ink);border-top:0;
+}
+.bg-light .iso-sec + .wrap{display:none}
+.bg-light #visit .sno{color:var(--vis-mute)}
+.bg-light #visit .sno b{-webkit-text-stroke:1px var(--vis-line2)}
+.bg-light #visit .shead h2{color:var(--vis-ink)}
+.bg-light #visit .shead h2 em{color:var(--vis-acc)}
+.bg-light #visit .visit,
+.bg-light #visit .partners{background:var(--vis-line2);border-color:var(--vis-line2)}
+.bg-light #visit .visit>div,
+.bg-light #visit .partners>div{background:#fff}
+.bg-light #visit .vh,
+.bg-light #visit .partners .role,
+.bg-light #visit .info dt,
+.bg-light #visit .doc small{color:var(--vis-mute)}
+.bg-light #visit .vh::before,
+.bg-light #visit .partners .role::before{background:var(--vis-acc)}
+.bg-light #visit .info dd,
+.bg-light #visit .doc b{color:var(--vis-ink)}
+.bg-light #visit .info dd small{color:var(--vis-sub)}
+.bg-light #visit .doc{border-color:var(--vis-line2);color:var(--vis-ink)}
+.bg-light #visit .doc:hover{border-color:var(--vis-acc);background:color-mix(in oklch,var(--vis-acc) 6%,transparent)}
+.bg-light #visit .doc .ic{border-color:var(--vis-acc);color:var(--vis-acc)}
+.bg-light #visit .doc .dl{color:var(--vis-sub)}
+.bg-light #visit .doc:hover .dl{color:var(--vis-acc)}
+.bg-light #visit .lg{border:1px solid var(--vis-line)}
+.bg-light #visit .lg:hover{box-shadow:0 8px 24px rgba(6,10,18,.10)}
+.bg-light #visit .lg::after{background:var(--vis-acc)}
+.bg-light .ftr{border-top:0}
+
+/* ---------- 3. FIBER SPRINT を深い青に ---------- */
+.bg-deep .lab{
+  --lab-bg:oklch(0.17 0.04 248);
+  background:
+    radial-gradient(60% 80% at 85% 50%,oklch(0.22 0.06 240 / .7),transparent 70%),
+    var(--lab-bg);
+  border-block-color:oklch(0.35 0.06 240 / .6);
+}
+.bg-deep .lab::before{
+  border-color:oklch(1 0 0 / .07);
+  box-shadow:inset 0 0 0 60px var(--lab-bg),inset 0 0 0 61px oklch(1 0 0 / .07);
+}
+.bg-deep .lab .slots,
+.bg-deep .lab .board{background:oklch(0.13 0.03 250)}
+
+/* ---------- Tweaks パネル ---------- */
+.bgtw{position:fixed;right:20px;bottom:20px;z-index:200;width:260px;
+  background:#0d1524;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.5);
+  font:500 13px/1.5 "Noto Sans JP",sans-serif;color:#e6ebf3;display:none}
+.bgtw.on{display:block}
+.bgtw .hd{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);
+  font:600 11px "JetBrains Mono",monospace;letter-spacing:.2em;color:#aab4c6;cursor:move;user-select:none}
+.bgtw .hd button{all:unset;cursor:pointer;color:#7f8aa0;font-size:14px;padding:0 4px}
+.bgtw .bd{padding:6px 16px 14px}
+.bgtw label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
+.bgtw label:last-of-type{border-bottom:0}
+.bgtw label small{display:block;color:#7f8aa0;font-size:11px}
+.bgtw input{appearance:none;flex:none;width:34px;height:18px;border-radius:9px;background:#2a3346;position:relative;cursor:pointer;transition:background .2s}
+.bgtw input::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#aab4c6;transition:transform .2s,background .2s}
+.bgtw input:checked{background:oklch(0.86 0.15 200)}
+.bgtw input:checked::after{transform:translateX(16px);background:#060a12}
+.bgtw .all{display:flex;gap:6px;margin-top:10px}
+.bgtw .all button{all:unset;flex:1;text-align:center;cursor:pointer;padding:7px 0;border:1px solid rgba(255,255,255,.14);
+  font:600 10.5px "JetBrains Mono",monospace;letter-spacing:.12em;color:#aab4c6}
+.bgtw .all button:hover{border-color:oklch(0.86 0.15 200);color:#fff}
+
+</style>
+<style>
+/* ===== TOP：告知ビジュアル固定 + 控えめなモーション ===== */
+.vh-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.opening{min-height:auto}
+.opening>.grid,.opening>.glow{display:none}
+
+/* ポスターを端から端まで敷き、日付帯の紺(#0f2a6b)→ページの黒(--ink)へなめらかに落とす */
+.kv-wrap{--band:#0f2a6b;position:relative;isolation:isolate;width:100%;justify-self:stretch;
+  background:linear-gradient(180deg,var(--band) 0,var(--band) calc(min(100vw,1920px)*957/2048),
+    color-mix(in oklch,var(--band) 55%,var(--ink)) calc(min(100vw,1920px)*957/2048 + 70px),var(--ink) 100%)}
+/* ワイド画面で左右にできる余白を、ぼかしたポスターで埋める */
+.kv-amb{position:absolute;left:0;right:0;top:0;height:calc(min(100vw,1920px)*957/2048);z-index:-1;overflow:hidden}
+.kv-amb::before{content:"";position:absolute;inset:-80px;background:url(https://forum.b2every1.org/assets/poster.png) center/cover;filter:blur(60px) brightness(.7) saturate(1.1)}
+
+/* frame */
+.kv{position:relative;aspect-ratio:2048/957;max-width:1920px;margin-inline:auto;background:var(--band);isolation:isolate}
+@media(min-width:1921px){
+  .kv-img{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+}
+.kv-img{position:absolute;inset:0;overflow:hidden;
+  clip-path:inset(0 100% 0 0);animation:kvReveal 1.3s cubic-bezier(.7,0,.2,1) .15s forwards}
+.kv-img img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:62% 40%;
+  animation:kvBreath 18s ease-in-out 1.4s infinite alternate}
+@keyframes kvReveal{to{clip-path:inset(0 0 0 0)}}
+@keyframes kvBreath{from{transform:scale(1)}to{transform:scale(1.025)}}
+
+/* 1. 光の帯（斜めのシーン）がときどき横切る */
+.kv-sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
+.kv-sheen::before{content:"";position:absolute;top:-20%;bottom:-20%;left:-30%;width:22%;
+  background:linear-gradient(100deg,transparent,rgba(160,230,255,.10) 40%,rgba(255,255,255,.18) 50%,rgba(160,230,255,.10) 60%,transparent);
+  transform:skewX(-14deg);animation:kvSheen 9s cubic-bezier(.5,0,.3,1) 2.2s infinite}
+@keyframes kvSheen{0%{left:-30%}28%,100%{left:120%}}
+
+/* 2. 縦にゆっくり走るスキャンライン（HUD の名残） */
+.kv-scan{position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,color-mix(in oklch,var(--light) 70%,transparent),transparent);
+  box-shadow:0 0 12px var(--light);opacity:0;animation:kvScan 7s linear 1.6s infinite}
+@keyframes kvScan{0%{top:0;opacity:0}6%{opacity:.45}70%{opacity:.45}76%,100%{top:76%;opacity:0}}
+
+/* 3. 写真と日付帯の境目を光パルスが走る（光ファイバ） */
+.kv-fiber{position:absolute;left:0;right:0;top:76.2%;height:2px;pointer-events:none;overflow:hidden;
+  background:color-mix(in oklch,var(--light) 18%,transparent)}
+.kv-fiber i{position:absolute;top:0;bottom:0;left:-20%;width:18%;
+  background:linear-gradient(90deg,transparent,var(--light) 70%,#fff);
+  box-shadow:0 0 10px var(--light),0 0 24px var(--light);animation:kvPulse 3.6s cubic-bezier(.6,0,.4,1) 1.5s infinite}
+@keyframes kvPulse{0%{left:-20%}60%,100%{left:105%}}
+
+/* corner brackets（フルブリードでは非表示） */
+.kv-cn{display:none}
+.kv-cn{position:absolute;width:22px;height:22px;border:2px solid var(--light);opacity:0;animation:kvCn .5s ease-out 1.3s forwards}
+.kv-cn.a{left:-9px;top:-9px;border-right:0;border-bottom:0}
+.kv-cn.b{right:-9px;top:-9px;border-left:0;border-bottom:0}
+.kv-cn.c{left:-9px;bottom:-9px;border-right:0;border-top:0}
+.kv-cn.d{right:-9px;bottom:-9px;border-left:0;border-top:0}
+@keyframes kvCn{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:none}}
+
+/* CTA row */
+.kv-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px;max-width:1440px;margin:0 auto;padding:clamp(24px,3.5vh,36px) var(--pad) clamp(32px,5vh,56px);
+  opacity:0;transform:translateY(10px);animation:kvUp .7s cubic-bezier(.2,.8,.2,1) 1.25s forwards}
+.kv-tag{margin-left:auto;display:flex;align-items:center;gap:12px;font:600 11px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.kv-tag i{display:block;width:28px;height:1px;background:var(--light)}
+@keyframes kvUp{to{opacity:1;transform:none}}
+
+.kv-ctas .motionbtn{position:static}
+.kv-ctas .btn:not(.pri){background:rgba(6,10,18,.35)}
+
+/* motion off / reduced */
+.paused .kv-img img,.paused .kv-sheen::before,.paused .kv-scan,.paused .kv-fiber i{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){
+  .kv-img{clip-path:none;animation:none}
+  .kv-img img,.kv-sheen::before,.kv-scan,.kv-fiber i{animation:none}
+  .kv-cn,.kv-ctas{animation:none;opacity:1;transform:none}
+}
+@media(max-width:760px){
+  .daytabs{width:100%}
+  .daytabs button{flex:1;padding:12px 10px;gap:6px;flex-wrap:wrap;justify-content:center}
+  .daytabs button small{width:100%;text-align:center}
+  .kv-tag{margin-left:0;width:100%}
+  .kv-ctas .btn{flex:1;justify-content:center}
+}
+
+</style>
+<style>
+/* ===== 01 SKILLS : 見出しスワップ + 新カード + 職種紹介モーダル ===== */
+
+/* 見出し：5パターンを同じセルに重ね、高さを固定してガタつきを防ぐ */
+.sk-head{display:grid;margin:0}
+.sk-head>.hl{grid-area:1/1;opacity:0;transform:translateY(10px);transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.sk-head>.hl.on{opacity:1;transform:none;pointer-events:auto}
+.sk-head .hl span{display:block}
+.sk-head .hl em{display:block;font-style:normal;color:var(--light)}
+.sk-head .hl .tag{display:block;font:600 11px/1 var(--mono);letter-spacing:.22em;color:var(--light);margin-bottom:14px;text-transform:uppercase}
+.sk-head .hl.skill em{font-size:.62em;margin-top:.35em;letter-spacing:-.01em}
+.sk-hint{display:flex;align-items:center;gap:10px;margin-top:20px;font:600 11px var(--mono);letter-spacing:.18em;color:var(--mute)}
+.sk-hint i{display:block;width:6px;height:6px;border:1px solid var(--light);transform:rotate(45deg)}
+
+/* カード */
+.sk{cursor:pointer;outline:none}
+.sk:focus-visible{box-shadow:inset 0 0 0 2px var(--light)}
+.sk .img img{object-position:var(--pos,50% 40%)}
+/* 英語メイン・日本語サブ */
+.sk h3.en{margin:0 0 8px;font:italic 900 27px/.95 var(--cond);letter-spacing:.005em;text-transform:uppercase;color:#fff;min-height:1.9em;display:flex;align-items:flex-end;text-wrap:balance}
+.sk .ja{display:block;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--light);margin-bottom:14px}
+.sk p.tl{font-weight:700;color:var(--text)}
+
+/* メダル */
+.sk .medal{display:flex;align-items:center;gap:12px;margin:0 -6px 16px;padding:10px 6px;border-top:1px solid var(--line)}
+.sk .medal img{flex:none;width:52px;height:52px;object-fit:cover;border-radius:50%;
+  -webkit-mask:radial-gradient(closest-side,#000 82%,transparent 100%);mask:radial-gradient(closest-side,#000 82%,transparent 100%)}
+.sk .medal div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sk .medal small{font-size:10.5px;color:var(--mute);letter-spacing:.04em}
+.sk .medal em{font:italic 800 15px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase;color:var(--mc)}
+.sk .medal b{font-weight:900;font-size:15px;color:#fff;letter-spacing:.08em}
+.sk .m-gold{--mc:#e6c35a}.sk .m-silver{--mc:#cfd6e3}.sk .m-bronze{--mc:#d9977a}
+.sk .by{padding-top:12px}
+
+/* 初期状態からカラー表示。ホバーは他カードを沈めて強調 */
+.sk .img img{filter:saturate(1.05) contrast(1.05);transform:scale(1.04)}
+.sk .img::before{opacity:.12}
+.sk:hover .img img{filter:saturate(1.15) contrast(1.08);transform:scale(1.1)}
+.sk .more{display:flex;align-items:center;gap:8px;margin:-6px 0 20px;font:600 11px var(--mono);letter-spacing:.16em;color:var(--sub);transition:color .2s}
+.sk .more b{font-weight:600;transition:transform .3s}
+.sk:hover .more,.sk:focus-visible .more{color:var(--light)}
+.sk:hover .more b{transform:translateX(4px)}
+.skills.dim .sk:not(.act) .img img{filter:grayscale(1) brightness(.45)}
+.skills.dim .sk:not(.act) .body{opacity:.55}
+.sk .body{transition:opacity .4s}
+
+/* ---------- モーダル ---------- */
+.skm{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:clamp(0px,3vw,40px);visibility:hidden}
+.skm.open{visibility:visible}
+.skm .scrim{position:absolute;inset:0;background:rgba(3,6,12,.78);backdrop-filter:blur(8px);opacity:0;transition:opacity .35s}
+.skm.open .scrim{opacity:1}
+.skm .panel{--ink:#121d31;--ink2:#18253d;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+  position:relative;width:min(1180px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;
+  background:var(--ink);border:1px solid var(--line2);border-top:3px solid var(--light);box-shadow:0 40px 120px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(24px) scale(.985);transition:opacity .35s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.skm.open .panel{opacity:1;transform:none}
+.skm .bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:12px 18px;
+  background:color-mix(in oklch,var(--ink) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.skm .bar .crumb{font:600 11px var(--mono);letter-spacing:.2em;color:var(--mute);flex:1}
+.skm .bar .crumb b{color:var(--light);font-weight:600}
+.skm .bar button{all:unset;cursor:pointer;display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line2);color:var(--sub);font:500 15px var(--mono);transition:border-color .2s,color .2s}
+.skm .bar button:hover{border-color:var(--light);color:#fff}
+
+/* hero */
+.skm .hero{position:relative;display:grid;grid-template-columns:1.25fr 1fr;min-height:420px}
+.skm .hero .ph{position:relative;overflow:hidden;background:#0b1424}
+.skm .hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.skm .hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--ink))}
+.skm .hero .tx{padding:clamp(28px,3.4vw,52px) clamp(24px,3.4vw,52px) clamp(28px,3vw,44px) 8px;display:flex;flex-direction:column;justify-content:center}
+.skm .no{font:italic 900 88px/.8 var(--cond);color:transparent;-webkit-text-stroke:1.2px var(--light);margin-bottom:18px}
+.skm .en{font:italic 900 clamp(34px,3.6vw,56px)/.9 var(--cond);text-transform:uppercase;color:#fff;letter-spacing:-.005em}
+.skm .en span{display:block;color:var(--light)}
+.skm .ja{margin-top:14px;font-weight:900;font-size:15px;color:var(--sub);letter-spacing:.04em}
+.skm .tline{margin-top:26px;padding-top:20px;border-top:1px solid var(--line2);font-weight:900;font-size:18px;color:#fff}
+
+/* content */
+.skm .ct{padding:clamp(32px,4vw,64px) clamp(24px,4vw,64px) clamp(32px,4vw,56px)}
+.skm .lead{margin:0;font-weight:900;font-size:clamp(26px,2.8vw,42px);line-height:1.3;letter-spacing:-.03em;color:#fff;text-wrap:balance}
+.skm .lead em{display:block;font-style:normal;color:var(--light);font-size:.6em;margin-top:.5em;letter-spacing:-.01em}
+.skm .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,64px);margin-top:36px}
+.skm .body p{margin:0 0 1em;color:var(--sub);line-height:1.95;text-wrap:pretty}
+.skm .verbs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2);border:1px solid var(--line2);align-self:start}
+.skm .verbs div{background:var(--ink2);padding:18px 20px}
+.skm .verbs i{display:block;font:600 11px var(--mono);font-style:normal;letter-spacing:.16em;color:var(--light)}
+.skm .verbs b{display:block;margin-top:6px;font-weight:900;font-size:19px;color:#fff}
+.skm .verbs small{display:block;margin-top:2px;font-size:12px;color:var(--mute)}
+
+.skm .pts-h{margin:52px 0 18px;display:flex;align-items:center;gap:14px;font:600 11px var(--mono);letter-spacing:.22em;color:var(--mute)}
+.skm .pts-h::after{content:"";flex:1;height:1px;background:var(--line2)}
+.skm .pts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);margin:0;padding:0;list-style:none;counter-reset:pt}
+.skm .pts li{background:var(--ink);padding:24px 24px 26px 0;display:grid;grid-template-columns:56px 1fr;gap:4px;counter-increment:pt}
+.skm .pts li::before{content:counter(pt,decimal-leading-zero);grid-row:span 2;font:italic 900 34px/1 var(--cond);color:var(--light);padding-left:2px}
+.skm .pts b{font-weight:900;font-size:17px;color:#fff}
+.skm .pts span{color:var(--sub);font-size:14px;line-height:1.85}
+
+.skm .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px}
+.skm .gal img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;filter:saturate(.9)}
+
+.skm .ft{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line2)}
+.skm .motto{flex:1;font-weight:900;font-size:clamp(20px,2vw,26px);color:#fff;letter-spacing:.04em}
+.skm .by{font:500 11px/1.5 var(--mono);color:var(--mute);letter-spacing:.06em}
+.skm .by b{display:block;font:700 15px var(--jp);color:var(--text);letter-spacing:0;margin-top:2px}
+.skm .pdf{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--line2);text-decoration:none;color:#fff;font-weight:700;font-size:14px;transition:border-color .2s,background .2s}
+.skm .pdf .ic{font:600 10px var(--mono);letter-spacing:.14em;padding:5px 7px;border:1px solid var(--light);color:var(--light)}
+.skm .pdf:hover{border-color:var(--light);background:color-mix(in oklch,var(--light) 6%,transparent)}
+
+/* prev / next */
+.skm .nav2{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line2)}
+.skm .nav2 button{all:unset;cursor:pointer;padding:22px clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:4px;transition:background .2s}
+.skm .nav2 button+button{border-left:1px solid var(--line2);text-align:right;align-items:flex-end}
+.skm .nav2 button:hover{background:var(--ink2)}
+.skm .nav2 small{font:600 10.5px var(--mono);letter-spacing:.2em;color:var(--mute)}
+.skm .nav2 b{font-weight:900;color:#fff;font-size:16px}
+
+body.skm-lock{overflow:hidden}
+
+@media(max-width:900px){
+  .skm .hero{grid-template-columns:1fr;min-height:0}
+  .skm .hero .ph{aspect-ratio:16/10}
+  .skm .hero .ph::after{background:linear-gradient(180deg,transparent 55%,var(--ink))}
+  .skm .hero .tx{padding:0 24px 28px;margin-top:-40px;position:relative}
+  .skm .no{font-size:64px}
+  .skm .cols,.skm .pts{grid-template-columns:1fr}
+  .skm .gal{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .sk-head>.hl,.skm .panel,.skm .scrim{transition:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Fiber Fusion Sprint トップへ">
+      <span class="hmark"><i class="b l"></i><i class="b r"></i><i class="ring"></i><i class="ring2"></i><i class="core"></i></span>
+      <span class="wm"><span>Fiber Fusion</span><b>Sprint</b></span>
+      <span class="sep"></span>
+      <span class="ev">情報通信配線技術フォーラム 2026冬<small>COMNEXT 2026 / WEST HALL</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#skills"><i>01</i>4職種の実演</a>
+      <a href="#program"><i>02</i>プログラム</a>
+      <a href="#lab"><i>03</i>FIBER SPRINT</a>
+      <a href="#visit"><i>04</i>来場案内</a>
+    </nav>
+    <a class="expo" href="https://www.cbw-expo.jp/ja-jp/about/foe.html" target="_blank" rel="noopener noreferrer"><img src="https://forum.b2every1.org/assets/comnext_logo.png" alt="COMNEXT">公式 ↗</a>
+  </div>
+  <div class="fiberline slow"></div>
+</header>
+
+<!-- ============ TOP ============ -->
+<section class="opening" id="top" data-screen-label="01 Top">
+  <div class="grid"></div><div class="glow"></div>
+  <div class="kv-wrap">
+    <div class="kv-amb" aria-hidden="true"></div>
+    <h1 class="vh-only">ICT NETWORK INFRASTRUCTURE FORUM 情報通信配線技術フォーラム冬 2026｜技能五輪国際大会 4職種デモンストレーション ＋ 国際規格紹介</h1>
+    <div class="kv" id="kv">
+      <div class="kv-img"><img src="https://forum.b2every1.org/assets/poster.png" alt="ICT NETWORK INFRASTRUCTURE FORUM 情報通信配線技術フォーラム冬。ICTネットワークインフラの品質・信頼性・持続可能性を、確かな技能で支える。2026年12月2日（水）〜4日（金）10:00–18:00 東京ビッグサイト 西ホール。主催 高度情報通信推進協議会"></div>
+      <div class="kv-sheen" aria-hidden="true"></div>
+      <div class="kv-scan" aria-hidden="true"></div>
+      <div class="kv-fiber" aria-hidden="true"><i></i></div>
+      <i class="kv-cn a"></i><i class="kv-cn b"></i><i class="kv-cn c"></i><i class="kv-cn d"></i>
+    </div>
+    <div class="kv-ctas">
+      <a class="btn pri" href="#program">プログラムを見る <span class="ar">→</span></a>
+      <a class="btn amb" href="#lab"><b>FIBER SPRINT</b> に挑戦 <span class="ar">→</span></a>
+      <span class="kv-tag"><i></i>WorldSkills · 4 Skills Live</span>
+      <button class="motionbtn" id="motion">■ MOTION OFF</button>
+    </div>
+  </div>
+  <div class="databar">
+    <dl class="wrap cells">
+      <div class="cell"><dt>DATE</dt><dd><span class="big">12.2<span class="dw">水</span><span class="to">—</span>12.4<span class="dw">金</span></span><span class="sm">2026年 ／ 10:00–18:00（最終日は17:00まで）</span></dd></div>
+      <div class="cell"><dt>VENUE</dt><dd>東京ビッグサイト<br>西ホール<span class="sm">COMNEXT 2026 内</span></dd></div>
+      <div class="cell"><dt id="cdLabel">COUNTDOWN TO OPEN</dt><dd><div class="count" id="count"><div><b>--</b><span>DAYS</span></div><div><b>--</b><span>HRS</span></div><div><b>--</b><span>MIN</span></div><div><b>--</b><span>SEC</span></div></div></dd></div>
+    </dl>
+  </div>
+</section>
+
+<main>
+<!-- ============ 01 SKILLS ============ -->
+<section class="sec" id="skills" data-screen-label="02 Skills">
+  <div class="wrap">
+    <div class="shead rv">
+      <div class="sno">SECTION<b>01</b></div>
+      <div>
+        <h2 class="sk-head" id="skHead" aria-live="polite">
+          <span class="hl on" data-i="-1"><span>光ファイバをつなぐ。</span><span>その先で、<em style="display:inline">何を支えているのか。</em></span></span>
+        </h2>
+        <p>光ファイバで通信基盤を築き、機器をつなぎ、設備や機体を動かす。技能五輪国際大会・上海大会の4職種を、第一線の技能者が実演で紹介します。</p>
+        <div class="sk-hint"><i></i>カードにカーソルを合わせると各職種の見どころ、クリックで職種紹介を表示</div>
+      </div>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><b data-count="4">0</b><span>技能五輪 国際大会職種</span></div>
+      <div class="stat"><b data-count="3">0</b><span>開催日数</span></div>
+      <div class="stat"><b data-count="38">0</b><span>実演・競技セッション</span></div>
+      <div class="stat"><b data-count="4">0</b><span>実演協力企業</span></div>
+    </div>
+    <div class="skills" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- ============ 02 PROGRAM ============ -->
+<section class="sec prog" id="program" data-screen-label="03 Program">
+  <div class="herowrap">
+    <div class="ffs-hero" id="hero" title="クリックで再生">
+      <div class="grid"></div>
+      <div class="kicker"><i></i>OPTICAL FIBER SPLICING CHALLENGE</div>
+      <div class="corner">SM / G.652</div>
+      <h2 class="title">
+        <span class="t1">Fiber Fusion</span>
+        <span class="t2"><span class="streak"></span><span class="streak"></span><span class="streak"></span>Sprint</span>
+      </h2>
+      <div class="tag">ARC FUSION <b>●</b><br>Ø125 µm CLAD / Ø9 µm CORE</div>
+      <div class="el top"></div>
+      <div class="el bot"></div>
+      <div class="line"><div class="fiber l"></div><div class="fiber r"></div><div class="pulse"></div></div>
+      <div class="arc"></div>
+      <div class="spark"></div>
+      <div class="jp">実演・競技プログラム<small>DEC 2 — DEC 4 · 10:00 – 17:00</small></div>
+      <dl class="readout">
+        <dt>SPLICE TIME</dt><dd class="time" id="time">00:00.00</dd>
+        <dt>EST. LOSS</dt><dd id="loss">-.-- dB</dd>
+        <dt>STATUS</dt><dd id="status">READY</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="wrap sec-inner">
+    <div class="shead rv">
+      <div class="sno">SECTION<b>02</b></div>
+      <div>
+        <h2>3日間、<em>毎時</em>どこかで技能が動いている。</h2>
+        <p>実演はすべて自由に見学できます。日付を切り替えて、見たい職種の時間をチェックしてください。</p>
+      </div>
+    </div>
+    <div class="ptools">
+      <div class="daytabs" id="daytabs" role="tablist">
+        <button data-day="0" aria-pressed="true"><b>12.2</b><span>水</span><small>DAY 1</small></button>
+        <button data-day="1" aria-pressed="false"><b>12.3</b><span>木</span><small>DAY 2</small></button>
+        <button data-day="2" aria-pressed="false"><b>12.4</b><span>金</span><small>DAY 3</small></button>
+      </div>
+      <div class="legend"><span class="d"><i></i>実演</span><span class="f"><i></i>FIBER SPRINT 競技</span></div>
+    </div>
+    <div class="gantt" id="gantt"></div>
+    <p class="pnote">※ プログラムは変更となる場合があります。</p>
+  </div>
+</section>
+
+<!-- ============ 03 LAB ============ -->
+<section class="sec lab" id="lab" data-screen-label="04 Fiber Sprint">
+  <div class="wrap lab-grid">
+    <div class="rv">
+      <div class="kick"><i></i>Section 03 · Open Challenge</div>
+      <div class="ttl"><span>Fiber Fusion</span><em>Sprint</em></div>
+      <p class="jp">光ファイバ接続スピードチャレンジ</p>
+      <p>光ファイバを何秒でつなげるか。来場者なら誰でも自由に参加でき、融着接続の速さを競います。経験は問いません。</p>
+      <div class="prize"><b>1<sup>st</sup></b><span><small>TOP PRIZE</small>1位の方には豪華賞品を進呈</span></div>
+      <div class="steps">
+        <div><i>STEP 01</i><b>CLEAVE</b><small>被覆を除去し、切断</small></div>
+        <div><i>STEP 02</i><b>ALIGN</b><small>心線を融着機にセット</small></div>
+        <div><i>STEP 03</i><b>FUSE</b><small>アーク放電で接続</small></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="slots">
+        <div class="hd"><span>OPEN SLOTS</span><b>● 自由参加</b></div>
+        <div class="slot"><div class="d">12.2<small>水</small></div><ul><li>10:00–11:30</li><li>14:00–17:00 <span class="tr"></span><em>自由参加</em></li></ul></div>
+        <div class="slot"><div class="d">12.3<small>木</small></div><ul><li>10:00–11:30</li><li>14:00–17:00 <span class="tr"></span><em>自由参加</em></li></ul></div>
+        <div class="slot"><div class="d">12.4<small>金</small></div><ul><li>10:00–11:30</li><li>14:00–16:00 <span class="tr"></span><em>自由参加</em></li></ul></div>
+        <div class="ft">実演協力　<b>エクシオグループ株式会社</b></div>
+      </div>
+      <dl class="board">
+        <dt>BEST TIME</dt><dd class="t">--:--.--</dd><dd class="s">AWAITING</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ISO ============ -->
+<section class="sec iso-sec" data-screen-label="05 ISO">
+  <div class="wrap iso rv">
+    <div class="code"><small>INT'L STANDARD</small>ISO/IEC<br>14763-5</div>
+    <h2>将来の増設まで考えて、今日の配線をつくる。</h2>
+    <div>
+      <p>配線を見分けられるラベルや接続記録は、次の点検や増設を支えます。ISO/IEC 14763-5 の展示では、設計・施工・運用を通じて配線システムの持続可能性を高める考え方を紹介します。</p>
+      <div class="cycle"><div><small>01</small>設計</div><div><small>02</small>施工</div><div><small>03</small>運用</div></div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="fiberline arc"></div></div>
+
+<!-- ============ 04 VISIT ============ -->
+<section class="sec" id="visit" data-screen-label="06 Visit">
+  <div class="wrap">
+    <div class="shead rv">
+      <div class="sno">SECTION<b>04</b></div>
+      <div><h2>来場案内・<em>配布資料</em></h2></div>
+    </div>
+    <div class="visit rv">
+      <div>
+        <p class="vh">ACCESS</p>
+        <dl class="info">
+          <dt>DATE</dt><dd>2026年12月2日（水）〜 4日（金）<small>10:00–18:00（最終日は17:00まで）</small></dd>
+          <dt>VENUE</dt><dd>東京ビッグサイト 西ホール</dd>
+          <dt>EXHIBITION</dt><dd>COMNEXT 2026<small>第4回 次世代通信技術＆ソリューション展</small></dd>
+        </dl>
+      </div>
+      <div>
+        <p class="vh">DOWNLOAD</p>
+        <div class="docs">
+          <a class="doc" download="チラシ.pdf" href="https://forum.b2every1.org/assets/flyer.pdf"><span class="ic">PDF</span><span><b>チラシ</b><small>FLYER · 0.8 MB</small></span><span class="dl">↓</span></a>
+          <a class="doc" download="パンフレット.pdf" href="https://forum.b2every1.org/assets/pamphlet.pdf"><span class="ic">PDF</span><span><b>パンフレット</b><small>PAMPHLET · 2.0 MB</small></span><span class="dl">↓</span></a>
+          <a class="doc" download="4職種のポスター.pdf" href="https://forum.b2every1.org/assets/posters4.pdf"><span class="ic">PDF</span><span><b>4職種のポスター</b><small>POSTERS · 7.3 MB</small></span><span class="dl">↓</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners rv">
+      <div class="org-col">
+        <p class="role">ORGANIZER / 主催</p>
+        <img class="icpc" src="https://forum.b2every1.org/assets/logos/icpc.png" alt="特定非営利活動法人 高度情報通信推進協議会（ICPC）">
+      </div>
+      <div class="sup-col">
+        <p class="role">SUPPORTERS / 協賛・協力</p>
+        <div class="tier t1"><div class="lg xl"><img src="https://forum.b2every1.org/assets/logos/ntteast.png" alt="NTT東日本"></div></div>
+        <div class="tier t2"><div class="lg "><img src="https://forum.b2every1.org/assets/logos/anritsu.png" alt="アンリツ"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/fujikura.png" alt="フジクラ"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/nipponseisen.png" alt="日本製線"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/sumitomo.png" alt="住友電工"></div></div>
+        <div class="tier t3"><div class="lg "><img src="https://forum.b2every1.org/assets/logos/exeo.png" alt="エクシオグループ株式会社"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/hokuriku.png" alt="北陸電工"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/kandenko.png" alt="株式会社関電工"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/kinden.png" alt="株式会社きんでん"></div><div class="lg "><img src="https://forum.b2every1.org/assets/logos/miraitone.png" alt="株式会社ミライト・ワン"></div></div>
+      </div>
+      <div class="ptr-col">
+        <p class="role">SUPPORTED BY / 後援<span class="pend">予定・申請中</span></p>
+        <ul class="ptr-list">
+          <li>厚生労働省</li><li>総務省</li><li>中央職業能力開発協会</li>
+          <li>一般社団法人 情報通信エンジニアリング協会</li><li>全日本電気工事工業組合連合会</li>
+          <li>一般社団法人 電設工業協会</li><li>一般社団法人 情報通信設備協会</li><li>一般社団法人 CATV技術協会</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="top2">
+      <div class="ffs-lock">
+        <div class="ffs-mark"><div class="bar l"></div><div class="bar r"></div><div class="ring"></div><div class="ring2"></div><div class="core"></div></div>
+        <div class="txt"><span>Fiber Fusion</span><b>Sprint</b><em>光ファイバ融着スピードチャレンジ</em></div>
+      </div>
+      <div class="meta"><b>情報通信配線技術フォーラム 2026冬</b><br>主催　特定非営利活動法人 高度情報通信推進協議会<br>2026.12.2 — 12.4 · TOKYO BIG SIGHT WEST HALL</div>
+    </div>
+    <div class="bot"><span>© 2026 ICPC</span><a href="#top" style="text-decoration:none">BACK TO TOP ↑</a></div>
+  </div>
+</footer>
+
+<!-- 職種紹介モーダル -->
+<div class="skm" id="skm" role="dialog" aria-modal="true" aria-labelledby="skmTitle" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="panel" id="skmPanel" tabindex="-1"></div>
+</div>
+
+<script>
+/* 4職種データ（出典：職種紹介.docx ／ 各職種 A0 ポスター） */
+window.SKILLS = [
+  {
+    key:'ict', no:'02', en:'ICT Network Infrastructure', ja:'ICTネットワーク・インフラ施工',
+    lead:['AIを支える通信網は、','こうして築かれる。'], sub:'光をつなぐ精度。通信を守る技。',
+    tagline:'AIも、クラウドも。その基盤をつくる。', motto:'速く、正確に、美しく。',
+    verbs:[['配線する','光ファイバー・LAN'],['つなぐ','融着接続・機器接続'],['設定する','Wi-Fi・スマートホーム'],['確かめる','測定・障害復旧']],
+    body:['生成AIも、動画配信も、キャッシュレス決済も、データセンタを行き交う膨大なデータに支えられている。そのデータを運ぶ通信網を設計し、築き、守る仕事がICTネットワーク・インフラ施工である。'],
+    points:[
+      ['光の通り道を築く。','髪の毛ほどに細い光ファイバを次々と融着する。速さと精度を両立させる選手の手さばきが見どころだ。'],
+      ['配線をマネジメントする。','データセンタの保守や将来の増設を見越してケーブルを配置する。'],
+      ['スマートホームを構築する。','Wi-Fiの電波の強さを測り、家中の機器が安定してつながるようにする。'],
+      ['通信の品質を守る。','測定器の波形からわずかな異常の兆しを読み取り、トラブルを未然に防ぐ。']
+    ],
+    medal:{type:'gold',label:'Gold Medal',name:'床枝 航太'},
+    partner:'株式会社きんでん', pdf:'https://forum.b2every1.org/assets/src/p1.pdf', pos:'50% 40%',
+    imgs:['https://forum.b2every1.org/assets/skills/ict_0.webp','https://forum.b2every1.org/assets/skills/ict_1.webp','https://forum.b2every1.org/assets/skills/ict_2.webp','https://forum.b2every1.org/assets/skills/ict_3.webp']
+  },
+  {
+    key:'sec', no:'03', en:'Intelligent Security Technology', ja:'インテリジェントセキュリティ技術',
+    lead:['人と施設を守るシステムは、','こうして築かれる。'], sub:'危険を見通す眼。機器を連動させる技。',
+    tagline:'人と街の安全を、技術で守る。', motto:'見守る。検知する。守り抜く。',
+    verbs:[['設計する','リスク分析・機器配置'],['施工する','カメラ・センサー・電子錠'],['連動させる','システム設定・統合'],['確かめる','動作検証・障害復旧']],
+    body:['強盗や不法侵入、火災、サイバー攻撃から、人と財産、社会を支えるインフラを守る。侵入監視、映像監視、入退管理、火災報知、環境監視を組み合わせ、異常を捉えて知らせる仕組みを築くのが、インテリジェントセキュリティ技術である。',
+          '競技の舞台は、オフィスや商業施設、データセンタ。選手は電気・通信・ITの技能を組み合わせ、設計から施工、設定、検証までを自ら担う。AIやプログラミングを活用し、不具合を解決する力も問われる。'],
+    points:[
+      ['守りを設計する。','施設の使われ方や防犯上のリスクを読み、カメラやセンサーの配置と配線を決める。'],
+      ['機器を設置する。','防犯カメラ、電子錠、インターホン、各種センサーを取り付け、正確に配線する。'],
+      ['システムを連動させる。','センサーが侵入を捉えると、現場の映像が監視画面に映り、警報が鳴る仕組みを組む。'],
+      ['不具合を見抜く。','機器が狙いどおりに連動するかを確かめ、動作記録を手がかりに原因を突き止めて復旧させる。']
+    ],
+    medal:{type:'silver',label:'Silver Medal',name:'猪腰 哲平'},
+    partner:'株式会社関電工', pdf:'https://forum.b2every1.org/assets/src/p2.pdf', pos:'62% 40%',
+    imgs:['https://forum.b2every1.org/assets/skills/sec_0.webp','https://forum.b2every1.org/assets/skills/sec_1.webp','https://forum.b2every1.org/assets/skills/sec_2.webp']
+  },
+  {
+    key:'ren', no:'62', en:'Renewable Energy', ja:'再生可能エネルギー',
+    lead:['自然の力を電気に変え、','暮らしに届ける。'], sub:'効率よく発電する設計。電力の安定供給を支える技。',
+    tagline:'自然の力を、社会の電力へ。', motto:'つくる。蓄える。安定して届ける。',
+    verbs:[['設計する','発電量・電力需要を考える'],['施工する','太陽光・風力・蓄電池'],['制御する','電力管理・プログラミング'],['復旧する','故障診断・保守']],
+    body:['風力、太陽光、水力、地熱、バイオマス。こうした再生可能エネルギーを活かし、電力を効率よく生み出して供給する仕組みを築くのが、再生可能エネルギー職種である。',
+          '競技では、選手が太陽光発電や小型風力発電の設備に、蓄電・電力管理システムを組み合わせ、実際に動かす。自然の力を無駄なく使い、設備を長く使い続けるための設計・施工・運用・保守の技能を競う。'],
+    points:[
+      ['発電システムを設計する。','設置場所の日射量や風の強さ、必要な電力量をもとに、機器の構成と配置を決める。'],
+      ['設備を組み上げる。','太陽光パネルや小型風車を設置し、電力を変換するインバータや蓄電池、制御盤を正確に配線する。'],
+      ['電力の流れを制御する。','制御機器とネットワークを設定し、発電量を監視しながら電気を蓄え、供給する仕組みをプログラムする。']
+    ],
+    medal:{type:'gold',label:'Gold Medal',name:'川上 友椰'},
+    partner:'株式会社きんでん', pdf:'https://forum.b2every1.org/assets/src/p3.pdf', pos:'50% 35%',
+    imgs:['https://forum.b2every1.org/assets/skills/ren_0.webp','https://forum.b2every1.org/assets/skills/ren_1.webp','https://forum.b2every1.org/assets/skills/ren_2.webp','https://forum.b2every1.org/assets/skills/ren_3.webp']
+  },
+  {
+    key:'uas', no:'64', en:'Unmanned Aerial Systems', ja:'無人航空機システム',
+    lead:['ドローンは、どうやって','目標を見つけて飛ぶのか。'], sub:'機体を操る手さばき。自律飛行を設計する力。',
+    tagline:'空の可能性を、技術でひらく。', motto:'組み立てる。考える。飛ばす。',
+    verbs:[['つくる','機体の組立・配線・設定'],['直す','故障診断・修理・部品製作'],['飛ばす','安全確認・手動操縦'],['自律化する','飛行計画・画像認識']],
+    body:['キットからドローンを組み立て、自ら操縦する。さらに、カメラの映像から目標を見つけて飛ぶ仕組みまで、自分でプログラムする。「つくる・直す・飛ばす・自動で動かす」を一人で担う総合力を競うのが、無人航空機システム職種である。'],
+    points:[
+      ['組み上げて、飛ばす。','機体の組立・配線・設定を仕上げ、安全を確かめて手動操縦で飛ばす。'],
+      ['不具合を見抜き、部品をつくる。','故障の原因を突き止めて修理し、自ら設計した部品を3Dプリンタで形にする。'],
+      ['空のルートを描く。','建物の上空を避けるなどの条件に合わせ、設計したルートを機体に自律飛行させる。'],
+      ['カメラを機体の「眼」にする。','映像からボールを見分け、その動きを追って飛ぶようにプログラムする。']
+    ],
+    medal:{type:'bronze',label:'Medal of Excellence',name:'川上 友椰'},
+    partner:'株式会社ミライト・ワン', pdf:'https://forum.b2every1.org/assets/src/p4.pdf', pos:'60% 40%',
+    imgs:['https://forum.b2every1.org/assets/skills/uas_0.webp','https://forum.b2every1.org/assets/skills/uas_1.webp','https://forum.b2every1.org/assets/skills/uas_2.webp','https://forum.b2every1.org/assets/skills/uas_3.webp']
+  }
+];
+
+</script>
+<script>
+(function(){
+const S = window.SKILLS, grid = document.getElementById('skills-grid'), head = document.getElementById('skHead');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---- 見出し（職種ごとの太字2行） ---- */
+S.forEach((s,i)=>{
+  head.insertAdjacentHTML('beforeend',
+    `<span class="hl skill" data-i="${i}" aria-hidden="true"><span class="tag">Skill ${s.no} · ${esc(s.ja)}</span><span>${esc(s.lead[0])}</span><span>${esc(s.lead[1])}</span><em>${esc(s.sub)}</em></span>`);
+});
+const hls = [...head.querySelectorAll('.hl')];
+let cur = -1, leaveT;
+function setHead(i){
+  if(i===cur) return; cur=i;
+  hls.forEach(h=>{const on=+h.dataset.i===i;h.classList.toggle('on',on);h.setAttribute('aria-hidden',String(!on))});
+  grid.classList.toggle('dim', i>=0);
+  [...grid.children].forEach((c,k)=>c.classList.toggle('act',k===i));
+}
+
+/* ---- カード ---- */
+grid.innerHTML = S.map((s,i)=>`
+  <article class="sk rv" tabindex="0" role="button" aria-haspopup="dialog" data-i="${i}" style="--pos:${s.pos}" aria-label="${esc(s.ja)}の職種紹介を開く">
+    <div class="img"><img src="${s.imgs[0]}" alt="" loading="lazy"></div>
+    <span class="no">SKILL</span><span class="big">${s.no}</span>
+    <div class="body">
+      <h3 class="en">${esc(s.en)}</h3>
+      <span class="ja">${esc(s.ja)}</span>
+      <p class="tl">${esc(s.tagline)}</p>
+      <span class="more">職種紹介を見る <b>→</b></span>
+      <div class="medal m-${s.medal.type}">
+        <img src="https://forum.b2every1.org/assets/medal_${s.medal.type}.png" alt="${esc(s.medal.label)}">
+        <div><small>第48回技能五輪国際大会</small><em>${esc(s.medal.label)}</em><b>${esc(s.medal.name)}</b></div>
+      </div>
+      <div class="by">DEMO PARTNER<b>${esc(s.partner)}</b></div>
+    </div><i class="bar"></i>
+  </article>`).join('');
+
+grid.querySelectorAll('.sk').forEach(card=>{
+  const i=+card.dataset.i;
+  card.addEventListener('mouseenter',()=>{clearTimeout(leaveT);setHead(i)});
+  card.addEventListener('focus',()=>{clearTimeout(leaveT);setHead(i)});
+  card.addEventListener('click',()=>openM(i));
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openM(i)}});
+});
+grid.addEventListener('mouseleave',()=>{leaveT=setTimeout(()=>setHead(-1),250)});
+grid.addEventListener('focusout',e=>{if(!grid.contains(e.relatedTarget))setHead(-1)});
+
+/* ---- モーダル ---- */
+const m=document.getElementById('skm'), panel=document.getElementById('skmPanel');
+let mi=0, lastFocus=null;
+function render(i){
+  const s=S[i], p=S[(i+S.length-1)%S.length], n=S[(i+1)%S.length];
+  const words=s.en.split(' '), last=words.pop();
+  panel.innerHTML=`
+    <div class="bar"><span class="crumb">SKILL <b>${s.no}</b> / 04 · WORLDSKILLS SHANGHAI 2026</span><button data-close aria-label="閉じる">✕</button></div>
+    <div class="hero">
+      <div class="ph"><img src="${s.imgs[0]}" alt="${esc(s.ja)}の競技の様子" style="object-position:${s.pos}"></div>
+      <div class="tx">
+        <div class="no">${s.no}</div>
+        <div class="en" id="skmTitle">${esc(words.join(' '))}<span>${esc(last)}</span></div>
+        <div class="ja">${esc(s.ja)}</div>
+        <div class="tline">${esc(s.tagline)}</div>
+      </div>
+    </div>
+    <div class="ct">
+      <h3 class="lead">${esc(s.lead[0])}${esc(s.lead[1])}<em>${esc(s.sub)}</em></h3>
+      <div class="cols">
+        <div class="body">${s.body.map(t=>`<p>${esc(t)}</p>`).join('')}</div>
+        <div class="verbs">${s.verbs.map((v,k)=>`<div><i>0${k+1}</i><b>${esc(v[0])}</b><small>${esc(v[1])}</small></div>`).join('')}</div>
+      </div>
+      <div class="pts-h">競技の見どころ</div>
+      <ol class="pts">${s.points.map(pt=>`<li><b>${esc(pt[0])}</b><span>${esc(pt[1])}</span></li>`).join('')}</ol>
+      <div class="gal">${s.imgs.slice(1).map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>
+      <div class="ft">
+        <div class="motto">${esc(s.motto)}</div>
+        <div class="by">DEMO PARTNER<b>${esc(s.partner)}</b></div>
+        <a class="pdf" href="${s.pdf}" target="_blank" rel="noopener"><span class="ic">PDF</span>職種ポスター（A0）</a>
+      </div>
+    </div>
+    <div class="nav2">
+      <button data-go="${(i+S.length-1)%S.length}"><small>← PREV · SKILL ${p.no}</small><b>${esc(p.ja)}</b></button>
+      <button data-go="${(i+1)%S.length}"><small>NEXT · SKILL ${n.no} →</small><b>${esc(n.ja)}</b></button>
+    </div>`;
+  panel.scrollTop=0;
+}
+function openM(i){
+  mi=i; render(i); lastFocus=document.activeElement;
+  m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.classList.add('skm-lock');
+  setTimeout(()=>panel.focus(),50);
+}
+function closeM(){
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.classList.remove('skm-lock');
+  if(lastFocus) lastFocus.focus();
+}
+m.addEventListener('click',e=>{
+  if(e.target.closest('[data-close]')) return closeM();
+  const g=e.target.closest('[data-go]'); if(g){mi=+g.dataset.go;render(mi);setHead(mi)}
+});
+addEventListener('keydown',e=>{
+  if(!m.classList.contains('open')) return;
+  if(e.key==='Escape') closeM();
+  if(e.key==='ArrowRight'){mi=(mi+1)%S.length;render(mi)}
+  if(e.key==='ArrowLeft'){mi=(mi+S.length-1)%S.length;render(mi)}
+});
+})();
+
+</script>
+<script>
+(function(){
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const mbtn=document.getElementById('motion');
+let playing=!reduce;
+function setMotion(){document.body.classList.toggle('paused',!playing);mbtn.textContent=playing?'■ MOTION OFF':'▶ MOTION ON'}
+mbtn.onclick=()=>{playing=!playing;setMotion();if(window.__hudPlayback)window.__hudPlayback()};
+setMotion();
+
+/* ---------- HUD photo cycler (legacy, only if present) ---------- */
+if(document.getElementById('hud')){
+const hud=document.getElementById('hud'), imgs=[...hud.querySelectorAll('.ph img')], ticks=[...document.querySelectorAll('#ticks i')];
+const caps=[['02','ICTネットワーク・インフラ施工'],['03','インテリジェントセキュリティ技術'],['62','再生可能エネルギー'],['64','無人航空機システム']];
+let hi=0, htimer;
+function show(n){
+  imgs.forEach((im,i)=>im.classList.toggle('on',i===n));
+  ticks.forEach((t,i)=>{t.className=i<n?'done':i===n?'on':'';});
+  document.getElementById('capNo').textContent=caps[n][0];
+  document.querySelector('#capNm span').textContent=caps[n][1];
+}
+function cycle(){htimer=setTimeout(()=>{hi=(hi+1)%imgs.length;show(hi);cycle()},4500)}
+function playback(){clearTimeout(htimer);if(playing)cycle()}
+window.__hudPlayback=playback;
+playback();
+const t0=performance.now();
+setInterval(()=>{if(!playing)return;const s=Math.floor((performance.now()-t0)/1000);const p=n=>String(n).padStart(2,'0');document.getElementById('tc').textContent=`CAM ${p(hi+1)} · ${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(s%60)}`},1000);
+
+}
+
+/* ---------- intro poster (legacy, only if present) ---------- */
+if(document.getElementById('intro')){
+const opening=document.getElementById('top'),intro=document.getElementById('intro'),wipe=document.getElementById('wipe');
+let introDone=false,introT;
+function endIntro(){
+  if(introDone)return;introDone=true;clearTimeout(introT);
+  if(reduce){intro.classList.add('gone');opening.classList.add('ready');return}
+  intro.classList.add('out');wipe.classList.add('go');
+  setTimeout(()=>opening.classList.add('ready'),550);
+  setTimeout(()=>intro.classList.add('gone'),1200);
+}
+document.getElementById('skip').onclick=endIntro;
+intro.addEventListener('click',e=>{if(e.target.id!=='skip')endIntro()});
+if(reduce)endIntro();else introT=setTimeout(endIntro,4800);
+}
+
+/* ---------- countdown ---------- */
+const open=new Date('2026-12-02T10:00:00+09:00'), close=new Date('2026-12-04T17:00:00+09:00');
+const cb=[...document.querySelectorAll('#count b')];
+function cd(){
+  const now=new Date();let diff=open-now;
+  const lbl=document.getElementById('cdLabel');
+  if(diff<=0){ if(now<close){lbl.textContent='NOW OPEN';} else {lbl.textContent='THANK YOU';} diff=0; }
+  const d=Math.floor(diff/864e5),h=Math.floor(diff/36e5)%24,m=Math.floor(diff/6e4)%60,s=Math.floor(diff/1e3)%60;
+  [d,h,m,s].forEach((v,i)=>cb[i].textContent=String(v).padStart(2,'0'));
+}
+cd();setInterval(cd,1000);
+
+/* ---------- reveal + counters ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(countUp);io.unobserve(e.target)}),{threshold:.18});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(el.classList.contains('sk')?([...el.parentNode.children].indexOf(el)*90):0)+'ms';io.observe(el)});
+function countUp(el){const to=+el.dataset.count,st=performance.now(),dur=1400;
+  const f=n=>{const p=Math.min(1,(n-st)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+
+/* ---------- nav active ---------- */
+const links=[...document.querySelectorAll('.nav a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['skills','program','lab','visit'].forEach(id=>so.observe(document.getElementById(id)));
+
+/* ---------- FFS hero (supplied component logic) ---------- */
+const hero=document.getElementById('hero');
+const tt=document.getElementById('time'),loss=document.getElementById('loss'),st=document.getElementById('status');
+let raf,timers=[];
+const fmt=s=>{const m=Math.floor(s/60),r=s%60;return String(m).padStart(2,'0')+':'+r.toFixed(2).padStart(5,'0')};
+function play(){
+  cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];
+  hero.classList.remove('play','lit');void hero.offsetWidth;hero.classList.add('play');
+  tt.textContent='00:00.00';loss.textContent='-.-- dB';st.textContent='ALIGN';st.className='';
+  const start=performance.now(),dur=1900,target=8.47;
+  const step=n=>{const p=Math.min(1,(n-start)/dur);tt.textContent=fmt(target*(1-Math.pow(1-p,3)));if(p<1)raf=requestAnimationFrame(step)};
+  raf=requestAnimationFrame(step);
+  timers.push(setTimeout(()=>{st.textContent='FUSING'},1100));
+  timers.push(setTimeout(()=>{hero.classList.add('lit');loss.textContent='0.02 dB';st.textContent='PASS';st.className='ok'},1950));
+}
+hero.addEventListener('click',play);
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){play();o.disconnect()}}),{threshold:.45}).observe(hero);
+
+/* ---------- program gantt ---------- */
+const S=10,E=17;
+const rows=[
+  {n:'SKILL 02',name:'ICTネットワーク・インフラ施工',by:'株式会社きんでん',days:[
+    [['10:00','11:00','ラックパネル光成端'],['13:00','14:00','ラックパネル光成端'],['15:00','16:00','シングルファイバチャレンジ']],
+    [['10:00','11:00','ラックパネルメタル成端'],['13:00','14:00','ラックパネルメタル成端'],['15:00','16:00','シングルファイバチャレンジ']],
+    [['10:00','11:00','クロージャ光接続'],['13:00','14:00','シングルファイバチャレンジ']]]},
+  {n:'SKILL 03',name:'インテリジェントセキュリティ技術',by:'株式会社関電工',days:'B'},
+  {n:'SKILL 62',name:'再生可能エネルギー',by:'株式会社きんでん',days:'A'},
+  {n:'SKILL 64',name:'無人航空機システム',by:'株式会社ミライト・ワン',days:'B'},
+  {n:'OPEN CHALLENGE',name:'Fiber Sprint',by:'エクシオグループ株式会社',ffs:true,days:[
+    [['10:00','11:30','競技'],['14:00','17:00','自由参加',1]],
+    [['10:00','11:30','競技'],['14:00','17:00','自由参加',1]],
+    [['10:00','11:30','競技'],['14:00','16:00','自由参加',1]]]}
+];
+const pat={A:[[['10:00','11:00'],['13:00','14:00'],['15:00','16:00']],[['10:00','11:00'],['13:00','14:00'],['15:00','16:00']],[['10:00','11:00'],['13:00','14:00']]],
+           B:[[['11:00','12:00'],['14:00','15:00'],['16:00','17:00']],[['11:00','12:00'],['14:00','15:00'],['16:00','17:00']],[['11:00','12:00'],['14:00','15:00']]]};
+const toH=s=>{const[h,m]=s.split(':').map(Number);return h+m/60};
+const pct=s=>((toH(s)-S)/(E-S)*100);
+const gantt=document.getElementById('gantt');
+function render(day){
+  let h='<div class="g-axis"><div class="lbl">SKILL / TIME</div><div class="g-track">';
+  for(let x=S;x<=E;x++)h+=`<span style="left:${(x-S)/(E-S)*100}%">${x}:00</span>`;
+  h+='</div></div>';
+  rows.forEach(r=>{
+    const list=typeof r.days==='string'?pat[r.days][day]:r.days[day];
+    h+=`<div class="g-row${r.ffs?' ffs':''}"><div class="who"><span class="n">${r.n}</span><b>${r.name}</b><small>${r.by}</small></div><div class="g-track">`;
+    h+=`<div class="g-lunch" style="left:${pct('12:00')}%;width:${pct('13:00')-pct('12:00')}%"></div>`;
+    list.forEach((b,i)=>{h+=`<div class="blk${r.ffs?' f':''}${b[3]?' open':''}" style="left:calc(${pct(b[0])}% + 3px);width:calc(${pct(b[1])-pct(b[0])}% - 6px);transition-delay:${i*80}ms"><b>${b[0]}–${b[1]}</b>${b[2]?`<small>${b[2]}</small>`:''}</div>`});
+    h+='</div></div>';
+  });
+  gantt.innerHTML=h;
+  // now-line on event days
+  const now=new Date(), jst=new Date(now.getTime()+ (now.getTimezoneOffset()+540)*6e4);
+  const ds=['2026-12-02','2026-12-03','2026-12-04'];
+  const ymd=jst.getFullYear()+'-'+String(jst.getMonth()+1).padStart(2,'0')+'-'+String(jst.getDate()).padStart(2,'0');
+  const hh=jst.getHours()+jst.getMinutes()/60;
+  if(ymd===ds[day]&&hh>=S&&hh<=E){
+    const tr=gantt.querySelector('.g-axis .g-track');const lbl=gantt.querySelector('.g-axis .lbl');
+    const l=lbl.offsetWidth+(hh-S)/(E-S)*tr.offsetWidth;
+    gantt.insertAdjacentHTML('beforeend',`<div class="nowline" style="left:${l}px"><span>NOW</span></div>`);
+  }
+  if(gantt.dataset.seen){gantt.classList.remove('in');void gantt.offsetWidth;requestAnimationFrame(()=>gantt.classList.add('in'))}
+}
+// default to today's tab during the event
+let startDay=0;{const now=new Date();const d=Math.floor((now-new Date('2026-12-02T00:00:00+09:00'))/864e5);if(d>=0&&d<=2)startDay=d}
+const tabs=[...document.querySelectorAll('#daytabs button')];
+tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render(+b.dataset.day)});
+tabs[startDay].click();
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){gantt.classList.add('in');gantt.dataset.seen=1;o.disconnect()}}),{threshold:.25}).observe(gantt);
+})();
+
+</script>
+
+
+</body>
+</html>
