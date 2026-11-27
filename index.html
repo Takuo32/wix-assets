@@ -386,6 +386,9 @@ img{display:block;max-width:100%}
   .blk{transform:none}
 }
 
+
+/* Updated program from 2026-11-28 workbook */
+.pm-detail{display:block;font-size:11px;line-height:1.55;color:var(--sub);overflow-wrap:anywhere}.pm-person{display:block;font-size:11px;line-height:1.6;color:var(--sub);margin-top:7px}.pm-what{justify-content:center}.pm-what svg{width:34px;height:25px}.pm-cell{padding:14px 8px}.pm-slot{gap:7px}
 </style>
 <style>/* ffs-hero.css */
 /* Fiber Fusion Sprint — 01 Web Hero (from supplied component) */
@@ -1252,34 +1255,34 @@ const ICON = {
   closure:`<svg viewBox="0 0 48 32" aria-hidden="true"><path d="M2 16h44" stroke="#9aa6bb" stroke-width="2"/><rect x="11" y="8" width="26" height="16" rx="8" fill="#26324a" stroke="currentColor" stroke-width="1.4"/><path d="M15 16 q4 -4 9 0 t9 0" fill="none" stroke="#f2c14e" stroke-width="1.3"/><circle cx="24" cy="16" r="2" fill="#ff6b6b"/></svg>`,
   single:`<svg viewBox="0 0 48 32" aria-hidden="true"><path d="M2 17h19M27 17h19" stroke="#f2c14e" stroke-width="1.6"/><circle cx="24" cy="17" r="9" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.4 2.4"/><path d="M22 13l3 4-3 4" fill="none" stroke="#ff6b6b" stroke-width="1.4"/><circle cx="33" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>`
 };
-const NAME = {opt:'ラックパネル光成端',metal:'ラックパネルメタル成端',closure:'クロージャ光接続',single:'シングルファイバチャレンジ'};
-const A = [[['10:00–11:00'],['13:00–14:00','15:00–16:00']],[['10:00–11:00'],['13:00–14:00','15:00–16:00']],[['10:00–11:00'],['13:00–14:00']]];
-const B = [[['11:00–12:00'],['14:00–15:00','16:00–17:00']],[['11:00–12:00'],['14:00–15:00','16:00–17:00']],[['11:00–12:00'],['14:00–15:00']]];
-const ROWS = [
-  {c:'ict',en:'ICT Network Infrastructure',ja:'ICTネットワーク・インフラ施工',img:'https://forum.b2every1.org/assets/skills/ict_0.webp',pos:'50% 40%',
-   d:'通信ラック・配線パネルへの光／メタルケーブルの成端や光接続など、情報通信ネットワークを構築する施工技術。',by:'株式会社きんでん',
-   cells:[
-     [[['10:00–11:00','opt']],[['13:00–14:00','opt'],['15:00–16:00','single']]],
-     [[['10:00–11:00','metal']],[['13:00–14:00','metal'],['15:00–16:00','single']]],
-     [[['10:00–11:00','closure']],[['13:00–14:00','single']]]
-   ]},
-  {c:'sec',en:'Intelligent Security Technology',ja:'インテリジェントセキュリティ技術',img:'https://forum.b2every1.org/assets/skills/sec_0.webp',pos:'62% 40%',
-   d:'監視カメラ等のセキュリティ機器を設置・配線・設定し、システムを構築します。',by:'株式会社関電工',cells:B},
-  {c:'ren',en:'Renewable Energy',ja:'再生可能エネルギー',img:'https://forum.b2every1.org/assets/skills/ren_0.webp',pos:'50% 35%',
-   d:'太陽光・風力発電設備の設計・施工・運用・保守の技術を実演します。',by:'株式会社きんでん',cells:A},
-  {c:'uas',en:'Unmanned Aerial Systems',ja:'無人航空機システム',img:'https://forum.b2every1.org/assets/skills/uas_0.webp',pos:'60% 40%',
-   d:'点検や測量に活用されるドローンの組立・調整・操縦技術を実演します。',by:'株式会社ミライト・ワン',cells:B},
-  {c:'ffs',en:'Fiber Fusion Sprint',ja:'光ファイバ接続スピードチャレンジ',img:'https://forum.b2every1.org/assets/prog/p3.jpg',pos:'45% 50%',badge:'体験できます',
-   d:'専用の機器で、光ファイバの接続をどなたでも体験できます。最速タイムには豪華賞品。',by:'エクシオグループ株式会社',
-   cells:[[['10:00–11:30'],['14:00–17:00']],[['10:00–11:30'],['14:00–17:00']],[['10:00–11:30'],['14:00–16:00']]],tag:'自由参加'}
+
+const svg = body => '<svg viewBox="0 0 48 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+body+'</svg>';
+Object.assign(ICON,{
+ alarm:svg('<path d="M8 28V9h32v19M8 14h32M8 20h32M14 9v19M22 9v19M30 9v19M38 9v19"/><path d="M20 5h8l2 4H18z" fill="#ffca57"/><path d="M16 2l-3 3M32 2l3 3"/>'),
+ security:svg('<path d="M8 7h21l9 7-7 9L8 14z"/><circle cx="31" cy="16" r="3" stroke="#ffca57"/><path d="M17 18v9H7M38 21l6 5M38 12l6-3"/>'),
+ solar:svg('<circle cx="39" cy="6" r="3" stroke="#ffca57"/><path d="M39 0v1M45 6h2M35 2l-2-2" stroke="#ffca57"/><path d="M8 10h25l5 16H3zM6 18h29M16 10l-2 16M25 10l2 16M20 26v5M12 31h16"/>'),
+ wind:svg('<path d="M24 3v28M17 31h14M24 4C9 6 9 20 24 24M24 4c15 2 15 16 0 20M24 7c-7 4-7 10 0 14M24 7c7 4 7 10 0 14"/><path d="M3 10h7M38 17h7M2 22h8" stroke="#ffca57"/>'),
+ drone:svg('<rect x="18" y="12" width="12" height="8" rx="3"/><path d="M18 14L9 7M30 14l9-7M18 18l-9 7M30 18l9 7"/><ellipse cx="8" cy="6" rx="6" ry="3"/><ellipse cx="40" cy="6" rx="6" ry="3"/><ellipse cx="8" cy="26" rx="6" ry="3"/><ellipse cx="40" cy="26" rx="6" ry="3"/><circle cx="24" cy="17" r="2" stroke="#ffca57"/>'),
+ flight:svg('<rect x="5" y="4" width="38" height="19" rx="2"/><path d="M24 23v6M15 29h18M15 13h18M24 8v10M18 10l12 6M30 10l-12 6"/><path d="M9 26v5M6 28h6M37 27h1M40 30h1" stroke="#ffca57"/>'),
+ ffs:svg('<path d="M2 16h17M29 16h17" stroke="#ffca57"/><rect x="17" y="7" width="14" height="21" rx="2"/><path d="M24 3v6M24 21v5M26 11l-4 5h5l-5 5" stroke="#ff6b6b"/>')
+});
+const NAME={opt:'パネル光成端',closure:'ラック–クロージャ光成端',single:'シングルファイバ スピードチャレンジ',alarm:'警報システム',security:'警備システム',solar:'太陽光パネルの設置',wind:'小型垂直風車の設置',drone:'ドローン 遠隔操縦',flight:'ドローン 遠隔操縦・操縦体験',ffs:'Fiber Fusion Sprint'};
+const slotData=(time,icon,detail)=>[time,icon,detail];
+const makeDays=(am,pm,lastPm=pm)=>[[am,pm],[am,pm],[am,lastPm]];
+const ROWS=[
+ {c:'ict',en:'ICT Network Infrastructure',ja:'ICTネットワーク施工',img:'https://forum.b2every1.org/assets/skills/ict_0.webp',pos:'50% 40%',d:'通信ラック間のパネル光成端、クロージャ光成端、シングルファイバのスピードチャレンジを実演します。',by:'株式会社きんでん',person:'床枝 航太',medal:'金メダル',cells:makeDays([slotData('10:00–11:00','opt','ラック間 パネル光成端（リボンファイバ）')],[slotData('13:00–14:00','closure','ラック–クロージャ光成端'),slotData('15:00–16:00','single','シングルファイバ スピードチャレンジ')])},
+ {c:'sec',en:'Intelligent Security Technology',ja:'インテリジェントセキュリティ技術',img:'https://forum.b2every1.org/assets/skills/sec_0.webp',pos:'62% 40%',d:'テンションフェンス、赤外線ビーム、ナンバープレート読み取りカメラの施工・設定を実演します。',by:'株式会社関電工',person:'猪腰 哲平',medal:'銀メダル',cells:makeDays([slotData('11:00–12:00','alarm','テンションフェンス施工')],[slotData('14:00–15:00','security','赤外線ビーム施工／各種設定'),slotData('16:00–17:00','security','ナンバープレート読み取りカメラ施工／各種設定')],[slotData('14:00–15:00','security','ナンバープレート読み取りカメラ施工／各種設定')])},
+ {c:'ren',en:'Renewable Energy',ja:'再生可能エネルギー',img:'https://forum.b2every1.org/assets/skills/ren_0.webp',pos:'50% 35%',d:'太陽光パネル、小型風車と変換器の設置・配線を実演します。',by:'株式会社きんでん',person:'川上 友椰',medal:'金メダル',cells:makeDays([slotData('10:00–11:00','solar','太陽光パネルの設置')],[slotData('13:00–14:00','wind','小型風車と変換器の設置・配線'),slotData('15:00–16:00','solar','太陽光パネルの設置')],[slotData('13:00–14:00','wind','小型風車と変換器の設置・配線')])},
+ {c:'uas',en:'Unmanned Aerial Systems',ja:'無人航空機システム',img:'https://forum.b2every1.org/assets/skills/uas_0.webp',pos:'60% 40%',d:'ドローン遠隔運用デモ（自動航行・ライブ映像）と操縦シミュレーター体験を行います。',by:'株式会社ミライト・ワン',person:'長尾 陸',medal:'敢闘賞',cells:makeDays([slotData('11:00–12:00','drone','ドローン遠隔運用デモ（自動航行・ライブ映像）')],[slotData('14:00–15:00','drone','ドローン遠隔運用デモ（自動航行・ライブ映像）'),slotData('16:00–17:00','flight','操縦シミュレーター体験')],[slotData('14:00–15:00','drone','ドローン遠隔運用デモ（自動航行・ライブ映像）')])},
+ {c:'ffs',en:'Fiber Fusion Sprint',ja:'光ファイバ接続スピードチャレンジ',img:'https://forum.b2every1.org/assets/prog/p3.jpg',pos:'45% 50%',badge:'体験できます',d:'専用の機器で、光ファイバの接続をどなたでも体験できます。最速タイムには豪華賞品。',by:'エクシオグループ株式会社<br>株式会社フジクラ',achievement:'技能五輪国際大会 金メダリスト6名輩出（2005・2007・2009・2011・2017・2022）',cells:makeDays([slotData('10:00–11:30','ffs','光ファイバ接続体験')],[slotData('13:00–15:00','ffs','光ファイバ接続体験'),slotData('15:30–17:00','ffs','光ファイバ接続体験')],[slotData('13:00–15:00','ffs','光ファイバ接続体験')]),tag:'自由参加'}
 ];
 const DAYS=[['12.2','水'],['12.3','木'],['12.4','金']];
 
 let today=-1;{const d=Math.floor((Date.now()-new Date('2026-12-02T00:00:00+09:00'))/864e5);if(d>=0&&d<=2)today=d}
 
 const slot = (s,row) => {
-  const [t,k] = Array.isArray(s)?s:[s];
-  return `<div class="pm-slot">${row.tag?`<span class="pm-tag">${row.tag}</span>`:''}<b>${t.replace('–','<i>–</i>')}</b>${k?`<span class="pm-what">${ICON[k]}<em>${NAME[k]}</em></span>`:''}</div>`;
+  const [t,k,detail] = Array.isArray(s)?s:[s];
+  return `<div class="pm-slot">${row.tag?`<span class="pm-tag">${row.tag}</span>`:''}<b>${t.replace('–','<i>–</i>')}</b>${k?`<span class="pm-what">${ICON[k]}<em>${NAME[k]}</em></span>`:''}${detail?`<span class="pm-detail">${detail}</span>`:''}</div>`;
 };
 
 let h = `<div class="pm-grid" role="table" aria-label="実演・競技プログラム">
@@ -1289,21 +1292,13 @@ let h = `<div class="pm-grid" role="table" aria-label="実演・競技プログ�
 ROWS.forEach(r=>{
   h += `<div class="pm-who c-${r.c}" role="rowheader">
     <div class="pm-ph"><img src="${(window.__R||(x=>x))(r.img)}" alt="" loading="lazy" style="object-position:${r.pos}">${r.badge?`<span class="pm-badge">${r.badge}</span>`:''}</div>
-    <div class="pm-tx"><span class="pm-en">${r.en}</span><b>${r.ja}</b><p>${r.d}</p><small><i>実演協力</i>${r.by}</small></div>
+    <div class="pm-tx"><span class="pm-en">${r.en}</span><b>${r.ja}</b><p>${r.d}</p><small><i>実演協力</i>${r.by}</small>${r.person?`<span class="pm-person">${r.medal} ／ ${r.person}</span>`:''}${r.achievement?`<span class="pm-person">${r.achievement}</span>`:''}</div>
   </div>`;
   r.cells.forEach((day,di)=>day.forEach(half=>{
     h += `<div class="pm-cell c-${r.c}${di===today?' today':''}${half.length>1?' two':''}" role="cell">${half.map(s=>slot(s,r)).join('')}</div>`;
   }));
 });
-h += `</div>
-<div class="pm-legend">
-  <div class="pm-lh"><small>ICT NETWORK INFRASTRUCTURE</small><b>ICTネットワーク・インフラ施工の実演内容</b></div>
-  ${[['opt','通信ラックの配線パネルに光ファイバケーブルを引き込み、コネクタで接続・整線します。'],
-     ['metal','LANケーブル（メタル）の心線を配線パネルの端子へ正しい配列で結線します。'],
-     ['closure','屋外の接続箱（クロージャ）内で、光ファイバ同士を融着接続して収納します。'],
-     ['single','光ファイバ1心を接続する速さと品質を競うチャレンジです。']]
-    .map(([k,t])=>`<div class="pm-li"><span class="pm-ic">${ICON[k]}</span><div><b>${NAME[k]}</b><p>${t}</p></div></div>`).join('')}
-</div>`;
+h += `</div>`;
 document.getElementById('pmatrix').innerHTML = h;
 })();
 
